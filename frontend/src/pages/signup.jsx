@@ -19,6 +19,16 @@ const Signup = () => {
             className="w-full px-3 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA17E] bg-[#DAA17E] placeholder:text-[#A05854] placeholder:text-sm"
           />
           <input
+            type="text"
+            placeholder="Batch"
+            className="w-full px-3 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA17E] bg-[#DAA17E] placeholder:text-[#A05854] placeholder:text-sm"
+          />
+          <input
+            type="text"
+            placeholder="Major"
+            className="w-full px-3 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA17E] bg-[#DAA17E] placeholder:text-[#A05854] placeholder:text-sm"
+          />
+          <input
             type="email"
             placeholder="Email"
             className="w-full px-3 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DAA17E] bg-[#DAA17E] placeholder:text-[#A05854] placeholder:text-sm"
