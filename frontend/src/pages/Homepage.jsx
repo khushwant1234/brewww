@@ -13,7 +13,10 @@ const Homepage = () => {
   const [error, setError] = useState(null);
   const [courses, setCourses] = useState([]);
 
-  // const { setUser, setSelectedCourse } = useContext(UserContext);
+  {
+    console.log("homepage");
+  }
+  const { setUser, setSelectedCourse } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -21,6 +24,7 @@ const Homepage = () => {
   //   try {
   //     const response = await GetApiCall("http://localhost:8000/api/user/");
   //     console.log("getUser response", response);
+
   //     setUser(response.data.user);
   //     setCourses(response.data.courses);
   //     setData(response);
@@ -31,18 +35,14 @@ const Homepage = () => {
   //   }
   // };
 
-  const testFunc = () => {
-    navigate("/tauh");
+  const handleLogout = () => {
+    // Clear user data from context
+    // setUser(null);
+    // Clear any stored tokens or session data
+    removeItem("token"); // Adjust based on your authentication setup
+    // Navigate to login page
+    navigate("/");
   };
-
-  // const handleLogout = () => {
-  //   // Clear user data from context
-  //   setUser(null);
-  //   // Clear any stored tokens or session data
-  //   removeItem("token"); // Adjust based on your authentication setup
-  //   // Navigate to login page
-  //   navigate("/");
-  // };
 
   // useEffect(() => {
   //   fetchData();

@@ -8,19 +8,21 @@ import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
 import Auth from "./pages/Auth.jsx";
 import Notes from "./pages/Notes.jsx";
-// import { useState, useEffect } from "react";
 import { useState, useEffect } from "react";
+
+// eslint-disable-next-line react/prop-types
 import ReferenceLinks from "./pages/links.jsx";
 import Signup from "./pages/signup.jsx";
 import Smth from "./pages/smth.jsx"
 import ChatbotPage from "./pages/chatbot.jsx";
 
 // import Login from "./pages/login.jsx"
+// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ element }) => {
-  // const [authStatus, setAuthStatus] = useState({
-  //   isChecked: false,
-  //   hasToken: false,
-  // });
+  const [authStatus, setAuthStatus] = useState({
+    isChecked: false,
+    hasToken: false,
+  });
 
   // useEffect(() => {
   //   const validateToken = async () => {
@@ -42,7 +44,7 @@ const PrivateRoute = ({ element }) => {
 
   // // Redirect to login if no token
   // if (!authStatus.hasToken) {
-  //   return <Navigate to="/" />;
+  //   return <Navigate to="/login" />;
   // }
 
   // Return protected route component if authenticated
@@ -113,8 +115,6 @@ const App = () => {
             element={<PrivateRoute element={<Lecture />} />}
           />
           <Route path="/notes" element={<PrivateRoute element={<Notes />} />} />
-         
-
         </Routes>
       </MemoryRouter>
     </div>
