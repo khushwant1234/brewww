@@ -3,17 +3,11 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/Homepage";
-import Test from "./pages/Test.jsx";
 import Lecture from "./pages/Lecture";
 import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
-import Signup from "./pages/signup.jsx";
-import { LogIn } from "lucide-react";
-import Login from "./pages/login.jsx";
-import LectureList from "./pages/lectures.jsx";
-import ReferenceLinks from "./pages/links.jsx";
-import Auth from "./pages/Auth.jsx"
-import Notes from "./pages/Notes.jsx"
+import Auth from "./pages/Auth.jsx";
+import Notes from "./pages/Notes.jsx";
 // import { useState, useEffect } from "react";
 import { useState, useEffect } from "react";
 
@@ -96,6 +90,7 @@ const App = () => {
       />
       <MemoryRouter>
         <Routes>
+          {console.log("App.js")}
           <Route path="/" element={<CheckAuth element={<Auth />} />} />
           <Route
             path="/home"

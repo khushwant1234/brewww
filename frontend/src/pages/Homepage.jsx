@@ -56,8 +56,7 @@ const Homepage = () => {
           <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
             <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
             <button
-              // onClick={handleLogout}
-              onClick={() => navigate("/tuah")} // test, remove later
+              onClick={handleLogout}
               className="text-gray-300 hover:text-yellow-500 transition-colors duration-300"
             >
               Logout

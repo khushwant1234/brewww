@@ -18,7 +18,7 @@ export const registerUser = AsyncHandler(async (req, res) => {
     throw new ApiError(400, "User already exists");
   }
 
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@mail\.jiit\.ac\.in$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@snu\.edu\.in$/;
   if (!emailRegex.test(email)) {
     throw new ApiError(400, "Email must be a valid @mail.jiit.ac.in address");
   }
