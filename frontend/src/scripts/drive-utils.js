@@ -15,22 +15,22 @@ export const getDownloadLink = (fileId) => {
 };
 
 export const getDriveLinks = () => {
-  const elements = document.getElementsByClassName(
-    "qhnNic LBlAUc Aopndd TIunU"
-  );
-  const anchorTags = [];
-
-  Array.from(elements).forEach((element) => {
-    const anchors = element.getElementsByTagName("a");
-    Array.from(anchors).forEach((anchor) => {
-      if (anchor.href.includes("drive.google.com")) {
-        anchorTags.push({
-          href: anchor.href,
-          text: anchor.textContent.trim(),
-        });
-      }
-    });
+  const allAnchors = document.querySelectorAll('a');
+  
+  const driveLinks = Array.from(allAnchors).filter(anchor => {
+    const onClickAttr = anchor.getAttribute('onClick');
+    const hasValidOnClick = onClickAttr && onClickAttr.startsWith('this.href');
+    
+    if (hasValidOnClick) {
+      console.log({
+        href: anchor.href,
+        onClick: onClickAttr,
+        text: anchor.textContent
+      });
+    }
+    
+    return hasValidOnClick && anchor.href;
   });
 
-  return anchorTags;
+  return driveLinks.map(anchor => anchor.href);
 };
