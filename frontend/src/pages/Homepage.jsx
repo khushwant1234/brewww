@@ -35,10 +35,11 @@ const Homepage = () => {
   //   }
   // };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     // Clear user data from context
     // setUser(null);
     // Clear any stored tokens or session data
+
     removeItem("token"); // Adjust based on your authentication setup
     // Navigate to login page
     navigate("/");
