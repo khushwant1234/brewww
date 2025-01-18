@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { PostApiCall } from "../utils/apiCall";
