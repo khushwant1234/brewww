@@ -8,7 +8,8 @@ import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
 import Auth from "./pages/Auth.jsx";
 import Notes from "./pages/Notes.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserProvider, UserContext } from "./context/userContext";
 
 // eslint-disable-next-line react/prop-types
 import ReferenceLinks from "./pages/links.jsx";
@@ -76,41 +77,73 @@ const CheckAuth = ({ element }) => {
   return element;
 };
 
+// const Homepage = () => {
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [courses, setCourses] = useState([]);
+
+//   const userContext = useContext(UserContext);
+//   const { setUser } = userContext || {};
+
+//   // ...rest of your code...
+
+//   const fetchData = async () => {
+//     try {
+//       const response = await GetApiCall("http://localhost:8000/api/user/");
+//       console.log("getUser response", response);
+//       if (setUser) {
+//         setUser(response.data.user);
+//       }
+//       setCourses(response.data.courses);
+//       setData(response);
+//     } catch (err) {
+//       setError(err.message);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+// };
+
 const App = () => {
   return (
-    <div className="h-screen w-full">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-      <MemoryRouter>
-        <Routes>
-          {console.log("App.js")}
-          <Route path="/" element={<CheckAuth element={<Auth />} />} />
-          <Route
-            path="/home"
-            element={<PrivateRoute element={<HomePage />} />}
-          />
-          {/* <Route
-            path="/chatbot"
-            element={<PrivateRoute element={<ChatBot />} />}
-          /> */}
-          <Route
-            path="/lecture"
-            element={<PrivateRoute element={<Lecture />} />}
-          />
-          <Route path="/notes" element={<PrivateRoute element={<Notes />} />} />
-        </Routes>
-      </MemoryRouter>
-    </div>
+    <UserProvider>
+      <div className="h-screen w-full">
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <MemoryRouter>
+          <Routes>
+            {console.log("App.js")}
+            <Route path="/" element={<CheckAuth element={<Auth />} />} />
+            <Route
+              path="/home"
+              element={<PrivateRoute element={<HomePage />} />}
+            />
+            {/* <Route
+              path="/chatbot"
+              element={<PrivateRoute element={<ChatBot />} />}
+            /> */}
+            <Route
+              path="/lecture"
+              element={<PrivateRoute element={<Lecture />} />}
+            />
+            <Route
+              path="/notes"
+              element={<PrivateRoute element={<Notes />} />}
+            />
+          </Routes>
+        </MemoryRouter>
+      </div>
+    </UserProvider>
   );
 };
 
