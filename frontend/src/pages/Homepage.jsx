@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { GetApiCall } from "../utils/apiCall";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useEffect, useState, useContext } from "react";
