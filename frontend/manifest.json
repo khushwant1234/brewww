@@ -3,8 +3,11 @@
   "name": "Brew",
   "version": "1.0.0",
   "description": "Chrome Extension with React",
+  "side_panel": {
+    "default_path": "index.html"
+  },
   "action": {
-    "default_popup": "index.html"
+    "default_title": "Click to open panel"
   },
   "permissions": [
     "activeTab",
@@ -19,7 +22,8 @@
     "history",
     "downloads",
     "tabs",
-    "webNavigation"
+    "webNavigation",
+    "sidePanel"
   ],
   "host_permissions": ["<all_urls>", "*://localhost/*"],
   "background": {

@@ -18,7 +18,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       sendResponse({ success: false, error: "Unknown action" });
   }
 });
-
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error(error));
 // Optional: Add any other background script initialization here
 console.log("Background script initialized");
 
