@@ -12,6 +12,7 @@ export const postLecture = AsyncHandler(async (req, res) => {
   console.log("******** postLecture Function ********");
   // const { batch, branch } = req.user; 
   const { url, lectureName, batch, branch } = req.body;  // remove this if using s3 code
+  console.log("req.body: ", req.body);
 
   // if (!req.file) {
   //   throw new ApiError(400, "No file uploaded");
