@@ -11,6 +11,10 @@ import Notes from "./pages/Notes.jsx";
 import { useState, useEffect } from "react";
 
 // eslint-disable-next-line react/prop-types
+import ReferenceLinks from "./pages/links.jsx";
+import Signup from "./pages/signup.jsx";
+import Smth from "./pages/smth.jsx";
+// import Login from "./pages/login.jsx"
 const PrivateRoute = ({ element }) => {
   const [authStatus, setAuthStatus] = useState({
     isChecked: false,
