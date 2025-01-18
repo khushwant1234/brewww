@@ -5,7 +5,7 @@ const Navbar = () => {
   const [activeTab, setActiveTab] = useState("Lectures"); // State to track the active tab
 
   return (
-    <nav className="bg-[#d9a87e] pt-8 pb-0 px-4">
+    <nav className="bg-[#D29573] pt-8 pb-0 px-4">
       <div className="flex justify-center space-x-6 text-[#5b3d2a] font-semibold text-base">
         <button
           className={`${
