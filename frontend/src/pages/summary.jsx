@@ -2,13 +2,13 @@ import Navbar from '../components/Navbar';
 
 const SummaryPage = () => {
   return (
-    <div className="min-h-screen bg-[#d9a87e]">
+    <div className="min-h-screen bg-[#D29573]">
       {/* Navbar */}
       <Navbar />
 
       {/* Summary Section */}
       <div className="flex justify-center items-start py-10">
-        <div className="w-full max-w-4xl bg-[#d9a87e] p-6 rounded-lg">
+        <div className="w-full max-w-4xl bg-[#D29573] p-6 rounded-lg">
           <div className="flex items-center mb-4">
             {/* Image beside Summary heading */}
             <img
