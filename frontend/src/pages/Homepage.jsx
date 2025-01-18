@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { GetApiCall } from "../utils/apiCall";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useEffect, useState, useContext } from "react";
@@ -12,7 +13,10 @@ const Homepage = () => {
   const [error, setError] = useState(null);
   const [courses, setCourses] = useState([]);
 
-  // const { setUser, setSelectedCourse } = useContext(UserContext);
+  {
+    console.log("homepage");
+  }
+  const { setUser, setSelectedCourse } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -20,6 +24,7 @@ const Homepage = () => {
   //   try {
   //     const response = await GetApiCall("http://localhost:8000/api/user/");
   //     console.log("getUser response", response);
+
   //     setUser(response.data.user);
   //     setCourses(response.data.courses);
   //     setData(response);
@@ -30,18 +35,14 @@ const Homepage = () => {
   //   }
   // };
 
-  const testFunc = () => {
-    navigate("/tauh");
+  const handleLogout = () => {
+    // Clear user data from context
+    // setUser(null);
+    // Clear any stored tokens or session data
+    removeItem("token"); // Adjust based on your authentication setup
+    // Navigate to login page
+    navigate("/");
   };
-
-  // const handleLogout = () => {
-  //   // Clear user data from context
-  //   setUser(null);
-  //   // Clear any stored tokens or session data
-  //   removeItem("token"); // Adjust based on your authentication setup
-  //   // Navigate to login page
-  //   navigate("/");
-  // };
 
   // useEffect(() => {
   //   fetchData();
@@ -50,27 +51,27 @@ const Homepage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
-        <div className="w-[414px] h-[737px] bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
+        <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
           {/* Header Section */}
           <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
             <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
             <button
-              // onClick={handleLogout}
-              onClick={() => navigate("/tuah")} // test, remove later
+              onClick={handleLogout}
               className="text-gray-300 hover:text-yellow-500 transition-colors duration-300"
             >
               Logout
             </button>
           </div>
 
-          <div className="h-12 flex items-center bg-transparent rounded-lg">
+          {/* <div className="h-12 flex items-center bg-transparent rounded-lg">
             <button
               onClick={() => navigate("/lecture")}
               className="w-full h-full bg-[#302b63] rounded-lg shadow-md"
             >
               Lecture 1
             </button>
-          </div>
+          </div> */}
+
           {/* Classroom List Section */}
           <div className="flex-1 p-5 overflow-y-auto space-y-5">
             {[...Array(5)].map((_, index) => (
