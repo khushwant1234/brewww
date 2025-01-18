@@ -12,6 +12,7 @@ import Signup from "./pages/signup.jsx";
 import { LogIn } from "lucide-react";
 import Login from "./pages/login.jsx";
 import LectureList from "./pages/lectures.jsx";
+import ReferenceLinks from "./pages/links.jsx";
 // import { useState, useEffect } from "react";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/summary" element={<summary />} />
+            <Route path="/links" element={<ReferenceLinks/>} />
           </Routes>
         </MemoryRouter>
       </div>

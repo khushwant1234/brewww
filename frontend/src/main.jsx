@@ -6,10 +6,10 @@ import App from './App.jsx'
 import Signup from './pages/signup.jsx'
 import Login from './pages/login.jsx'
 import SummaryPage from './pages/summary.jsx'
-import LectureList from './pages/lectures.jsx'
+import ReferenceLinks from './pages/links.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <LectureList />
+    <ReferenceLinks />
   </StrictMode>,
 )

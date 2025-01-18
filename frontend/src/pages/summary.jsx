@@ -2,7 +2,7 @@ import Navbar from '../components/Navbar';
 
 const SummaryPage = () => {
   return (
-    <div className="min-h-screen bg-[#D29573]">
+    <div className="min-h-screen bg-[#d9a87e]">
       {/* Navbar */}
       <Navbar />
 
@@ -14,7 +14,7 @@ const SummaryPage = () => {
             <img
               src="/icons/coffeebean.svg"  // Replace with the actual image path
               alt="Summary Icon"
-              className="w-7 h-7 mr-2 align-middle" // Adjust the size and alignment of the image
+              className="w-8 h-8 mr-1 align-middle" // Adjust the size and alignment of the image
             />
             <span className="text-2xl text-[#5b3d2a] font-bold">Summary</span>
           </div>
