@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
@@ -7,6 +8,7 @@ import Test from "./pages/Test.jsx";
 import Lecture from "./pages/Lecture";
 import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
+import Signup from "./pages/signup.jsx";
 // import { useState, useEffect } from "react";
 
 function App() {
@@ -37,6 +39,7 @@ function App() {
             />
             <Route path="/tuah" element={<Test />} />
             <Route path="/lecture" element={<Lecture />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </MemoryRouter>
       </div>
