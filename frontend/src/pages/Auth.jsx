@@ -21,14 +21,7 @@ const Auth = () => {
   });
 
   // Generate batch options
-  const batchOptions = [
-    ...Array(10)
-      .fill()
-      .map((_, i) => `A${i + 1}`),
-    ...Array(12)
-      .fill()
-      .map((_, i) => `B${i + 1}`),
-  ];
+  const batchOptions = ["24", "25", "26", "27"];
 
   const branchOptions = ["CSE", "ECE", "BioTech"];
 

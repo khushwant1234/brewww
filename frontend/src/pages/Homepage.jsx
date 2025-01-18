@@ -51,7 +51,7 @@ const Homepage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
-        <div className="w-[414px] h-[737px] bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
+        <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
           {/* Header Section */}
           <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
             <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
@@ -64,14 +64,15 @@ const Homepage = () => {
             </button>
           </div>
 
-          <div className="h-12 flex items-center bg-transparent rounded-lg">
+          {/* <div className="h-12 flex items-center bg-transparent rounded-lg">
             <button
               onClick={() => navigate("/lecture")}
               className="w-full h-full bg-[#302b63] rounded-lg shadow-md"
             >
               Lecture 1
             </button>
-          </div>
+          </div> */}
+
           {/* Classroom List Section */}
           <div className="flex-1 p-5 overflow-y-auto space-y-5">
             {[...Array(5)].map((_, index) => (
