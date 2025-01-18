@@ -95,10 +95,10 @@ const App = () => {
             path="/home"
             element={<PrivateRoute element={<HomePage />} />}
           />
-          <Route
+          {/* <Route
             path="/chatbot"
             element={<PrivateRoute element={<ChatBot />} />}
-          />
+          /> */}
           <Route
             path="/lecture"
             element={<PrivateRoute element={<Lecture />} />}
