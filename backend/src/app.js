@@ -7,12 +7,16 @@ import NoteRouter from "./routes/noteRoutes.js";
 import tagRotuer from "./routes/tagRoutes.js";
 import chatRouter from "./routes/chatRoutes.js";
 import chatBotRouter from "./routes/chatBotRoutes.js";
+import { AsyncHandler } from "./utils/AsyncHandler.js";
+
 import test from "./routes/test.js";
 const app = express();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
