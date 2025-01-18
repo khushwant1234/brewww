@@ -10,7 +10,7 @@ export const test = async (req, res) => {
         const prompt = "Give me a json output that i can use json.parse to get the json which should have schema {title: [topic1, topic2, topic3, topic4, topic5] 5 main importatn topic from the pdf without any markdown";
 
         const apiResponse = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAo9PXbaNaCl_ey-HN5ltRAECBdU0L7MEs`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_KEY}`,
             {
                 method: "POST",
                 headers: {

@@ -1,4 +1,5 @@
 export const createButton = () => {
+  console.log("Creating button");
   const button = document.createElement("button");
 
   Object.assign(button.style, {
