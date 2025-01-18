@@ -43,6 +43,7 @@ function App() {
             <Route path="/lecture" element={<Lecture />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/summary" element={<summary />} />
           </Routes>
         </MemoryRouter>
       </div>
