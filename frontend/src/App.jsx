@@ -9,6 +9,8 @@ import Lecture from "./pages/Lecture";
 import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
 import Signup from "./pages/signup.jsx";
+import { LogIn } from "lucide-react";
+import Login from "./pages/login.jsx";
 // import { useState, useEffect } from "react";
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
             <Route path="/tuah" element={<Test />} />
             <Route path="/lecture" element={<Lecture />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </MemoryRouter>
       </div>
