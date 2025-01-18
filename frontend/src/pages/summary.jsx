@@ -2,7 +2,7 @@ import Navbar from '../components/Navbar';
 
 const SummaryPage = () => {
   return (
-    <div className="min-h-screen bg-[#d9a87e]">
+    <div className="min-h-screen bg-[#D29573]">
       {/* Navbar */}
       <Navbar />
 
