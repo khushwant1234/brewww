@@ -274,6 +274,8 @@ const Classroom = () => {
                   )?.tags || [];
                 return lectureTags.includes(selectedFilter);
               })
+              .slice()
+              .reverse()
               .map((lecture, index) => (
                 <div
                   key={index}
