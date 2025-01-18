@@ -27,7 +27,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://classroom.google.com/c/*"],
+      "matches": ["https://blackboard.snu.edu.in/ultra/courses/*"],
       "js": ["content-script.js"]
     }
   ],

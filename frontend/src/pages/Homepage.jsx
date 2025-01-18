@@ -49,10 +49,10 @@ const Homepage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white font-sans">
-        <div className="w-[400px] h-[600px] bg-gradient-to-b from-[#1e1e2f] via-[#302b63] to-[#24243e] shadow-lg flex flex-col overflow-hidden">
+      <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
+        <div className="w-[414px] h-[737px] bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
           {/* Header Section */}
-          <div className="flex items-center justify-between p-4 bg-[#302b63] text-white border-b border-white/20">
+          <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
             <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
             <button
               // onClick={handleLogout}
@@ -63,6 +63,14 @@ const Homepage = () => {
             </button>
           </div>
 
+          <div className="h-12 flex items-center bg-transparent rounded-lg">
+            <button
+              onClick={() => navigate("/lecture")}
+              className="w-full h-full bg-[#302b63] rounded-lg shadow-md"
+            >
+              Lecture 1
+            </button>
+          </div>
           {/* Classroom List Section */}
           <div className="flex-1 p-5 overflow-y-auto space-y-5">
             {[...Array(5)].map((_, index) => (
@@ -98,11 +106,11 @@ const Homepage = () => {
   }
 
   return (
-    <div className="h-full bg-slate-700">
+    <div className="h-full bg-[#D29573]">
       {/* Instructions Component Start */}
       {courses.length === 0 && (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e]">
-          <div className="w-[400px] h-[600px] bg-gradient-to-b from-[#1e1e2f] via-[#302b63] to-[#24243e] shadow-lg flex flex-col overflow-hidden">
+          <div className="w-[414px] h-[737px] bg-gradient-to-b from-[#1e1e2f] via-[#302b63] to-[#24243e] shadow-lg flex flex-col overflow-hidden">
             <div className="flex items-center justify-between p-4 bg-[#302b63] text-white border-b border-white/20">
               <h1 className="text-xl font-semibold">Your Classrooms</h1>
               <button

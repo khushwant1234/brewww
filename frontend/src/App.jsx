@@ -3,7 +3,8 @@ import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/Homepage";
-import tuah from "./pages/tuah.jsx";
+import Test from "./pages/Test.jsx";
+import Lecture from "./pages/Lecture";
 import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
 // import { useState, useEffect } from "react";
@@ -34,7 +35,8 @@ function App() {
               // element={<PrivateRoute element={<HomePage />} />}
               element={<HomePage />}
             />
-            <Route path="/tuah" element={<tuah />} />
+            <Route path="/tuah" element={<Test />} />
+            <Route path="/lecture" element={<Lecture />} />
           </Routes>
         </MemoryRouter>
       </div>
