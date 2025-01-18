@@ -8,41 +8,37 @@ import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
 import Auth from "./pages/Auth.jsx";
 import Notes from "./pages/Notes.jsx";
-// import { useState, useEffect } from "react";
 import { useState, useEffect } from "react";
-import ReferenceLinks from "./pages/links.jsx";
-import Signup from "./pages/signup.jsx";
-import Smth from "./pages/smth.jsx"
-// import Login from "./pages/login.jsx"
+
 // eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ element }) => {
-  // const [authStatus, setAuthStatus] = useState({
-  //   isChecked: false,
-  //   hasToken: false,
-  // });
+  const [authStatus, setAuthStatus] = useState({
+    isChecked: false,
+    hasToken: false,
+  });
 
-  // useEffect(() => {
-  //   const validateToken = async () => {
-  //     const token = await getItem("token");
-  //     console.log("token", token);
-  //     setAuthStatus({
-  //       isChecked: true,
-  //       hasToken: !!token,
-  //     });
-  //   };
+  useEffect(() => {
+    const validateToken = async () => {
+      const token = await getItem("token");
+      console.log("token", token);
+      setAuthStatus({
+        isChecked: true,
+        hasToken: !!token,
+      });
+    };
 
-  //   validateToken();
-  // }, []);
+    validateToken();
+  }, []);
 
-  // // Show loading while checking token
-  // if (!authStatus.isChecked) {
-  //   return <div>Loading...</div>; // Or your loading component
-  // }
+  // Show loading while checking token
+  if (!authStatus.isChecked) {
+    return <div>Loading...</div>; // Or your loading component
+  }
 
-  // // Redirect to login if no token
-  // if (!authStatus.hasToken) {
-  //   return <Navigate to="/" />;
-  // }
+  // Redirect to login if no token
+  if (!authStatus.hasToken) {
+    return <Navigate to="/login" />;
+  }
 
   // Return protected route component if authenticated
   return element;
@@ -94,11 +90,7 @@ const App = () => {
       <MemoryRouter>
         <Routes>
           {console.log("App.js")}
-         {/*<Route path="/" element={<CheckAuth element={<Auth />} />} />*/}
-         <Route
-            path="/"
-            element={<PrivateRoute element={<Smth />} />}
-          />
+          <Route path="/" element={<CheckAuth element={<Auth />} />} />
           <Route
             path="/home"
             element={<PrivateRoute element={<HomePage />} />}
@@ -112,8 +104,6 @@ const App = () => {
             element={<PrivateRoute element={<Lecture />} />}
           />
           <Route path="/notes" element={<PrivateRoute element={<Notes />} />} />
-         
-
         </Routes>
       </MemoryRouter>
     </div>
