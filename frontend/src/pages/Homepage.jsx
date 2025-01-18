@@ -41,32 +41,6 @@ const Homepage = () => {
     // setUser(null);
     // Clear any stored tokens or session data
 
-    // try {
-    //   setLoading(true);
-
-    //   const response = await PostApiCall("http://localhost:8000/api/lecture/", {
-    //     url: "https://learn-eu-central-1-prod-fleet01-xythos.content.blackboardcdn.com/5f1e65938f97d/4158276?X-Blackboard-S3-Bucket=learn-eu-central-1-prod-fleet01-xythos&X-Blackboard-Expiration=1737234000000&X-Blackboard-Signature=BP%2BQPxMUdQAzWFodics%2B%2FAGk9sHP8e7gcqkRdp6%2FRN0%3D&X-Blackboard-Client-Id=511318&X-Blackboard-S3-Region=eu-central-1&response-cache-control=private%2C%20max-age%3D21600&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%2701_lecture_CourseConent.pdf&response-content-type=application%2Fpdf&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEH8aDGV1LWNlbnRyYWwtMSJIMEYCIQDDrVboWXBtFJkuNmTeES81Omy79cS3Z9LPXrtzdD1rkAIhANDcxDzpNEu4Cm3F0YCF1UiiFfdpZa9GTAuXs47uTsi2Kr4FCHgQBBoMNjM1NTY3OTI0MTgzIgxd5Kj%2FtxLhdc31zbkqmwU3jLFmWnVouN03vrDBDH30VswIN%2FEkGLeX%2FQQyKN6Y968skucbHbjcGDDSqgHtuR1so3cSCA9qxv49xcHWNIgBDHxH4WqWfdRXpwHoCc0B3iQbw8x5MNBUIJMzhwlDQXdXw%2FfwmUMJ3rKjfstqHwnutcPRGQI8eA3d79pv%2F3o%2Bl8wG9UMHAJaJZQ%2FLubBqJEG%2Fy6VRVcH3%2B%2BAEZUgQdpUQIh4a8%2FZ4R1RPZ9fMNd4zG3KLruMREX12grJnAnhDVOIB2ykJ8aNj46pgHzTTxkcQ1iLEg9%2FjJL2dHM4KrOXI58YfNumziQwRzsegTh%2BsU%2BcdoDO0MggdTlT4u05jPdmdiUA2xET6Cpqu4D8G4OJa5msWuPRA%2FbNoC4S8%2Fb1jLz5x3EhsW4vWaJgvJom0VufoDEXVoXNJg414IH9tTVfmfOdhY8TelD9YZtWou%2FeRjXPiD2lO7fDP4GAlIELRimRXZqfoBsV7GhYBx2Q5n0OzIfaMHdMCrfvtmgiYVVYR%2BgyIHtUv3aOQew5wIBlWEg4THho85PSnXlgxzSHfryB7mIXAgUpFRbHIZF6idr2YOlQ0J3ysYMAA1B%2FPeNO%2BDjbnsc79cal%2BudlFtOhb3YOODpOl7ZRt91FSHtSWdQlNNBI0UYYu3Mw5whZXYEOjnurydvOjbnkX33EwbE47NFzW0xr%2B5XZbl0gpFLH7kPSBM8EHt0hyDZjAIIb5l2XI2vTooiO7dtSp4Z6OfNT9S0l1RxGF%2BhYNWyo5nYxwlQW8FZIWzVCLbA1xsRFVTamFYP3xsCPIIU6p%2FmwRNeHKtexsRFnq%2FhPGDEvH6eiYvczxkhuR8BLnlXz2VTj5qk%2Fab%2B2FggMz9QrbgHPqR3mVypauBqAT%2BX18QOSR%2Bn7WMMaBr7wGOrABqWZavB%2BG2%2FpBD50QjDt%2FiHyHH68s5mCQ978Zqe0%2F%2FrwHSqDc5agpyHzi8hdrBZVgbrBN%2BNqlF1YGLNvlvdBp%2BWyPwwgp%2Br%2F%2FTBwhfPkpCNIFfamlD3QAbVBTCaz38bRXdlyAUUVKcYYupCtwoYnUiFS6lz87YMYyGaG8t%2FJL0dgKRXBh%2BXLc3jR3alf1TVgFWSGa6SotQejfpcVkYBvDXZcrH1JuwlG1%2BNpV76YACeo%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250118T150000Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Credential=ASIAZH6WM4PL7DSFVK3N%2F20250118%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Signature=c2340aff1aff49f77092339a13a39d9c5b47388b920e3bbd13d555a0939f9709",
-    //     lectureName: "Course Content",
-    //     batch: "27",
-    //     branch: "ECE",
-    //     course: "CSD102",
-    //   });
-
-    //   if (response.success) {
-    //     // Update local state with new notes
-    //     // setNotes(noteContent);
-    //     // You might want to show a success message here
-    //     toast.success("Lecture created successfully");
-    //   } else {
-    //     toast.error("Failed to create Lecture");
-    //   }
-    // } catch (err) {
-    //   console.error("Create Lecture error:", err);
-    //   toast.error("Error creating Lecture");
-    // } finally {
-    //   // setLoading(false);
-    // }
-
     removeItem("token"); // Adjust based on your authentication setup
     // Navigate to login page
     navigate("/");

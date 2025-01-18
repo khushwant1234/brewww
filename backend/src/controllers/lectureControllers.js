@@ -12,7 +12,6 @@ export const postLecture = AsyncHandler(async (req, res) => {
   console.log("******** postLecture Function ********");
   // const { batch, branch } = req.user; 
   const { url, lectureName, batch, branch } = req.body;  // remove this if using s3 code
-  console.log("req.body: ", req.body);
 
   // if (!req.file) {
   //   throw new ApiError(400, "No file uploaded");
@@ -109,10 +108,8 @@ export const getLectures = AsyncHandler(async (req, res) => {
   console.log("******** getLecture Function ********");
   const { courseId, batch, branch } = req.body;
 
-  console.log("courseId: ", courseId);
-
   const lectures = await Lecture.find({ course: courseId, batch, branch });
-
+  console.log("Lectures: ", lectures);
   if (!lectures) {
     throw new ApiError(404, "No lectures found");
   }
