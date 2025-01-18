@@ -12,6 +12,7 @@ import { downloadFile } from "./scripts/file-utils.js";
 import { getUser } from "./scripts/user-utils.js";
 
 const init = async () => {
+  console.log("Content script initialized");
   if (document.getElementById("my-extension-root")) return;
 
   // Create root div
