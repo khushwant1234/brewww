@@ -14,7 +14,6 @@ import ReferenceLinks from "./pages/links.jsx";
 import Signup from "./pages/signup.jsx";
 import Smth from "./pages/smth.jsx"
 // import Login from "./pages/login.jsx"
-// eslint-disable-next-line react/prop-types
 const PrivateRoute = ({ element }) => {
   // const [authStatus, setAuthStatus] = useState({
   //   isChecked: false,

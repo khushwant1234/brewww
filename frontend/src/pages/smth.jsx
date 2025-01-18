@@ -49,7 +49,7 @@ const AuthPage = () => {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="w-auto px-6 py-2 bg-[#9D6D5B] text-sm text-white py-2 rounded-lg font-bold hover:bg-[#5a4035]"
+              className="w-auto px-6 py-2 bg-[#9D6D5B] text-sm text-white rounded-lg font-bold hover:bg-[#5a4035]"
             >
               {isLogin ? "LOGIN" : "SIGN UP"}
             </button>
