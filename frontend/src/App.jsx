@@ -13,6 +13,8 @@ import { useState, useEffect } from "react";
 import ReferenceLinks from "./pages/links.jsx";
 import Signup from "./pages/signup.jsx";
 import Smth from "./pages/smth.jsx"
+import ChatbotPage from "./pages/chatbot.jsx";
+
 // import Login from "./pages/login.jsx"
 const PrivateRoute = ({ element }) => {
   // const [authStatus, setAuthStatus] = useState({
@@ -96,7 +98,7 @@ const App = () => {
          {/*<Route path="/" element={<CheckAuth element={<Auth />} />} />*/}
          <Route
             path="/"
-            element={<PrivateRoute element={<Smth />} />}
+            element={<PrivateRoute element={<ChatbotPage />} />}
           />
           <Route
             path="/home"
