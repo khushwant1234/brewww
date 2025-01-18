@@ -22,7 +22,7 @@ const ReferenceLinks = () => {
       <Navbar />
 
       {/* Reference Links Section */}
-      <div className="max-w-md mx-auto px-4 mt-10">
+      <div className="max-w-md mx-auto px-4 mt-16">
         {/* Section Header */}
         <div className="flex items-center mb-4">
           {/* Image beside Summary heading */}
@@ -31,7 +31,7 @@ const ReferenceLinks = () => {
             alt="Summary Icon"
             className="w-7 h-7 mr-2 align-middle" // Adjust the size and alignment of the image
           />
-          <span className="text-2xl text-[#5b3d2a] font-bold">Summary</span>
+          <span className="text-2xl text-[#5b3d2a] font-bold">Reference Links</span>
         </div>
         {/* Links */}
         <ul className="space-y-4">
