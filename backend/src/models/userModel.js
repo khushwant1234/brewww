@@ -23,7 +23,7 @@ const userSchema = new Schema(
     branch: {
       type: String,
       required: true,
-      enum: ["CSE", "ECE", "IT", "MECH"],
+      enum: ["CSE", "ECE", "CIVIL", "MECH"],
     },
   },
   { timestamps: true }
