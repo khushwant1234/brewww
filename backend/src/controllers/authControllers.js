@@ -20,7 +20,7 @@ export const registerUser = AsyncHandler(async (req, res) => {
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@snu\.edu\.in$/;
   if (!emailRegex.test(email)) {
-    throw new ApiError(400, "Email must be a valid @mail.jiit.ac.in address");
+    throw new ApiError(400, "Email must be a valid @snu.edu.in address");
   }
 
   const newUser = await User.create({ name, email, password, batch, branch });
