@@ -26,7 +26,7 @@ const Quiz = () => {
             "http://localhost:8000/api/geminiCall",
             {
               pdfLink: referenceLink,
-              prompt: "Give some one word quiz questions nad answers based on the content of the pdf",
+              prompt: "Give some quiz fill in the blanks questions and answers based on the content of the pdf",
             }
           )
             console.log("fetchSummary response", response);
