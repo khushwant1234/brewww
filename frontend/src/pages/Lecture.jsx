@@ -526,7 +526,16 @@ const Classroom = () => {
                       alt="Notes"
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setSelectedLab(lab);
+                        setReferenceLink(lab.link);
+                        navigate("/LabLinks");
+                      }}
+                    />
+                    <img
+                      src="/icons/notes.svg"
+                      alt="Notes"
+                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      onClick={() => {
+                        setReferenceLink(lab.link);
                         navigate("/LabInstructions");
                       }}
                     />
