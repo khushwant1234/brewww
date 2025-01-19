@@ -1,22 +1,57 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import Navbar from "../components/Navbar"; // Import the Navbar component
+import React, { useState, useContext, useEffect } from "react";
+import Navbar from "../components/Navbar";
+import { UserContext } from "../context/userContext";
+import { PostApiCall } from "../utils/apiCall";
+
 
 const Links = () => {
-  const links = [
-    {
-      id: 1,
-      title: "How to solve problem 1.1 in ch-1",
-      icon: "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png", // YouTube icon
-    },
-    {
-      id: 2,
-      title:
-        "Best strategies for solving advanced problems in exams and beyond",
-      icon: "https://upload.wikimedia.org/wikipedia/commons/3/39/Up-arrow-icon.png", // Up-arrow icon
-    },
-  ];
-
+  const {
+    user,
+    selectedCourse,
+    setSelectedLecture,
+    setSelectedLectureId,
+    selectedLectureId,
+    setLecturesChat,
+    lecturesChat,
+    referenceLink,
+    setReferenceLink
+  } = useContext(UserContext);
+  console.log("ROORORORO", referenceLink);
+  const [reference, setReference] = useState({
+    topics: [],
+    youtubeLinks: [],
+    articleLinks: []
+  });
+  const fetchReferences = async () => {
+  try {
+        const response = await PostApiCall(
+          "http://localhost:8000/api/getReference",
+          {
+            pdfLink: referenceLink,
+            youtube: true,
+            article: true,
+          }
+        )
+          console.log("getReference response", response);
+          setReference(response);
+      } catch (err) {
+        console.log("getReference error", err);
+      } 
+    };
+  useEffect(() => {
+    console.log("referenceLink", referenceLink);
+    fetchReferences();
+  }, []);
+  if(!reference){
+    return (
+      <div className="min-h-screen bg-[#D29573]">
+      {/* Navbar */}
+      <Navbar />
+      </div>
+    )
+  }
+  else{
   return (
     <div className="min-h-screen bg-[#D29573]">
       {/* Navbar */}
@@ -38,27 +73,55 @@ const Links = () => {
         </div>
         {/* Links */}
         <ul className="space-y-4">
-          {links.map((link) => (
-            <li
-              key={link.id}
-              className="flex items-center bg-[#ECBB9B] rounded-lg shadow p-2"
-            >
-              {/* Icon */}
-              <img
-                src={link.icon}
-                alt={`${link.title} icon`}
-                className="w-8 h-8 rounded-full mr-3"
-              />
-              {/* Title with ellipsis */}
-              <span className="text-sm font-medium text-gray-700 truncate overflow-hidden whitespace-nowrap">
-                {link.title}
-              </span>
-            </li>
-          ))}
+        {reference.youtubeLinks.map((ytThings) => (
+          <a
+            href={ytThings.link}
+            onClick={() => {
+              chrome.tabs.create({
+                url: ytThings.link,
+              });
+            }}
+            className="flex items-center bg-[#ECBB9B] rounded-lg shadow p-2"
+          >
+            {/* Icon */}
+            <img
+              src="https://banner2.cleanpng.com/20180619/sul/aa6xrbjzf.webp"
+              alt={`${ytThings.title} icon`}
+              className="w-8 h-8 rounded-full mr-3"
+            />
+            {/* Title with ellipsis */}
+            <p className="text-sm font-medium text-gray-700 truncate overflow-hidden whitespace-nowrap">
+              {ytThings.title}
+            </p>
+          </a>
+        ))}
+        {reference.articleLinks.map((articleThings) => (
+          <a
+            href={articleThings.link}
+            onClick={() => {
+              chrome.tabs.create({
+                url: articleThings.link,
+              });
+            }}
+            className="flex items-center bg-[#ECBB9B] rounded-lg shadow p-2"
+          >
+            {/* Icon */}
+            <img
+              src="https://banner2.cleanpng.com/20180413/rfe/avfci721i.webp"
+              alt={`${articleThings.title} icon`}
+              className="w-8 h-8 rounded-full mr-3"
+            />
+            {/* Title with ellipsis */}
+            <p className="text-sm font-medium text-gray-700 truncate overflow-hidden whitespace-nowrap">
+              {articleThings.title}
+            </p>
+          </a>
+        ))}
         </ul>
       </div>
     </div>
   );
+}
 };
 
 export default Links;
