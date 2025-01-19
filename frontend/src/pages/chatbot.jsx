@@ -41,7 +41,13 @@ const ChatbotPage = () => {
     setMessages((prev) => [...prev, userMessage]);
 
     try {
-      // Make API call
+      // Get conversation history excluding welcome message
+      const conversationHistory = messages
+        .slice(1) // Skip welcome message
+        .map((msg) => `${msg.sender}: ${msg.text}`)
+        .join("\n");
+
+      // Make API call with context
       const response = await axios.post("http://localhost:8000/api/ask", {
         links: lecturesChat,
         question: input,
