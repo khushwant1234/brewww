@@ -14,16 +14,35 @@ import Modal from "../components/Modal";
 import { toast } from "react-toastify";
 import { removeItem } from "../utils/storage.js";
 
+const animationStyles = `
+@keyframes moveToCorner {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(calc(100vw - 100%), calc(100vh - 100%));
+  }
+}
+
+.animate-to-corner {
+  position: fixed;
+  animation: moveToCorner 1s forwards;
+  z-index: 1000;
+}
+`;
+
 const Classroom = () => {
   const [activeTab, setActiveTab] = useState("lectures");
   const [showFilter, setShowFilter] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(null);
+  const [asContext, setAsContext] = useState([]);
   const [lectures, setLectures] = useState([]);
   const [tutorials, setTutorials] = useState([]);
   const [labs, setLabs] = useState([]);
   const [allTags, setAllTags] = useState([]);
   const [tagsGroupedByLecture, setTagsGroupedByLecture] = useState([]);
   const [update, setUpdate] = useState([]);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false); //for Modal
@@ -321,10 +340,10 @@ const Classroom = () => {
         </p>
         <p
           className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
-          onClick={() =>{
+          onClick={() => {
             setReferenceLink(url);
             navigate("/quiz");
-          } }
+          }}
         >
           Quiz Generator
         </p>
@@ -383,38 +402,39 @@ const Classroom = () => {
                   </div>
 
                   {/* Lecture Card Actions */}
-                  <div className="p-4 pr-0 flex justify-end space-x-4">
+                  <div className="p-4 pr-0 flex justify-end items-center space-x-2">
+                    <img
+                      src="/icons/coffeebean.svg"
+                      size={20}
+                      alt="Add Context"
+                      className={`text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-7 h-7 ${
+                        isAnimating ? "animate-to-corner" : ""
+                      }`}
+                      onClick={(e) => {
+                        setIsAnimating(true);
+                        // Wait for animation to complete
+                        setTimeout(() => {
+                          setSelectedLecture(lecture);
+                          setLecturesChat([...lecturesChat, lecture.link]);
+                          setIsAnimating(false);
+                          // navigate("/chatbot");
+                        }, 1000);
+                      }}
+                    />
                     <img
                       src="/icons/notes.svg"
                       alt="Notes"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
                         setSelectedLecture(lecture);
                         navigate("/notes");
                       }}
                     />
 
-                    <NotebookPen
-                      size={20}
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer"
-                      onClick={() => {
-                        setSelectedLecture(lecture);
-                        navigate("/notes");
-                      }}
-                    />
-                    <Bot
-                      size={20}
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer"
-                      onClick={() => {
-                        setSelectedLecture(lecture);
-                        setLecturesChat([...lecturesChat, lecture.link]);
-                        // navigate("/chatbot");
-                      }}
-                    />
                     <div className="relative">
                       <MoreVertical
-                        size={20}
-                        className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer"
+                        size={15}
+                        className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer"
                         onClick={(e) => {
                           e.stopPropagation();
                           setShowOptionsMenu(
@@ -429,12 +449,13 @@ const Classroom = () => {
                 </div>
               ))}
             <button
+              className="fixed bottom-0 rounded-full right-0 z-20"
               onClick={() => {
                 console.log(lecturesChat);
                 navigate("/chatbot");
               }}
             >
-              Chatbot
+              <img src="/icons/kettle.svg" alt="Chatbot" />
             </button>
           </div>
         </div>
@@ -471,7 +492,7 @@ const Classroom = () => {
                     <img
                       src="/icons/notes.svg"
                       alt="Notes"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
                         setReferenceLink(url);
                         navigate("/quiz");
@@ -480,7 +501,7 @@ const Classroom = () => {
                     <img
                       src="/icons/notes.svg"
                       alt="Notes"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
                         setReferenceLink(url);
                         navigate("/quiz");
@@ -524,7 +545,7 @@ const Classroom = () => {
                     <img
                       src="/icons/notes.svg"
                       alt="Notes"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
                         setSelectedLab(lab);
                         navigate("/LabInstructions");
