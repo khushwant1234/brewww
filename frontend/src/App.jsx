@@ -80,36 +80,8 @@ const CheckAuth = ({ element }) => {
   return element;
 };
 
-// const Homepage = () => {
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const [courses, setCourses] = useState([]);
-
-//   const userContext = useContext(UserContext);
-//   const { setUser } = userContext || {};
-
-//   // ...rest of your code...
-
-//   const fetchData = async () => {
-//     try {
-//       const response = await GetApiCall("http://localhost:8000/api/user/");
-//       console.log("getUser response", response);
-//       if (setUser) {
-//         setUser(response.data.user);
-//       }
-//       setCourses(response.data.courses);
-//       setData(response);
-//     } catch (err) {
-//       setError(err.message);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-// };
-
 const App = () => {
-  useEffect(() => {
-    }, []); // Run once when extension opens
+  useEffect(() => {}, []); // Run once when extension opens
 
   return (
     <UserProvider>
