@@ -473,8 +473,8 @@ const Classroom = () => {
                       alt="Notes"
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setReferenceLink(url);
-                        navigate("/quiz");
+                        setReferenceLink(tutorial.link);
+                        navigate("/tutorialHelper");
                       }}
                     />
                     <img
