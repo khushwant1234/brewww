@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
-import axios from 'axios';
-import Markdown from 'react-markdown'
+import axios from "axios";
+import Markdown from "react-markdown";
 
 const ChatbotPage = () => {
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const {
     user,
     selectedCourse,
@@ -15,15 +15,17 @@ const ChatbotPage = () => {
     selectedLectureId,
     setLecturesChat,
     lecturesChat,
-  } = useContext(UserContext);  
+  } = useContext(UserContext);
 
   useEffect(() => {
     // Add welcome message when component mounts
-    setMessages([{
-      sender: 'bot',
-      text: "Hi! I am Bean Bot, Here to help you on your learning journey. Feel free to ask questions from the notes you have selected.",
-      img: 'icons/logo.svg'
-    }]);
+    setMessages([
+      {
+        sender: "bot",
+        text: "Hi! I am Bean Bot, Here to help you on your learning journey. Feel free to ask questions from the notes you have selected.",
+        img: "icons/logo.svg",
+      },
+    ]);
   }, []);
 
   const handleSubmit = async (e) => {
@@ -32,43 +34,51 @@ const ChatbotPage = () => {
 
     // Add user message
     const userMessage = {
-      sender: 'user',
+      sender: "user",
       text: input,
-      img: 'icons/coffeebean.svg' // Update with real avatar path
+      img: "icons/coffeebean.svg", // Update with real avatar path
     };
-    setMessages(prev => [...prev, userMessage]);
-    
+    setMessages((prev) => [...prev, userMessage]);
+
     try {
       // Make API call
-      const response = await axios.post('http://localhost:8000/api/ask', {
+      const response = await axios.post("http://localhost:8000/api/ask", {
         links: lecturesChat,
-        question: input
+        question: input,
       });
 
       // Add bot response
       const botMessage = {
-        sender: 'bot',
+        sender: "bot",
         text: response.data.answer,
-        img: 'icons/logo.svg' // Update with real avatar path
+        img: "icons/logo.svg", // Update with real avatar path
       };
-      setMessages(prev => [...prev, botMessage]);
+      setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       const errorMessage = {
-        sender: 'bot',
-        text: 'Sorry, I encountered an error. Please try again.',
-        img: 'icons/logo.svg'
+        sender: "bot",
+        text: "Sorry, I encountered an error. Please try again.",
+        img: "icons/logo.svg",
       };
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     }
 
-    setInput('');
+    setInput("");
   };
 
   return (
     <div className="h-screen flex flex-col bg-[#D29573]">
       {/* Header */}
-      <div className="flex items-center justify-center bg-[#D29573] py-4">
+      <div className="p-4 bg-[#D29573] text-black relative">
+        <div className="flex items-center space-x-2">
+          <ArrowLeft
+            className="text-black hover:text-white cursor-pointer transition-colors"
+            size={20}
+            onClick={() => navigate("/lecture")}
+          />
+          <h2 className="text-md font-semibold m-0">Notes</h2>
+        </div>
         <h1 className="text-xl font-bold text-brown-700 flex items-center">
           <span className="mr-2">☕</span> BeanBot
         </h1>
@@ -94,16 +104,23 @@ const ChatbotPage = () => {
               className={`${
                 message.sender === "user" ? "bg-[#ECBB9B]" : "bg-[#DAA17E]"
               } rounded-lg p-3 text-black max-w-xs`}
-              style={{ marginLeft: "8px", marginRight: "8px", padding: "10px 16px" }}
+              style={{
+                marginLeft: "8px",
+                marginRight: "8px",
+                padding: "10px 16px",
+              }}
             >
-            <Markdown>{message.text}</Markdown>
+              <Markdown>{message.text}</Markdown>
             </div>
           </div>
         ))}
       </div>
 
       {/* Input Section */}
-      <form onSubmit={handleSubmit} className="flex items-center bg-[#D29573] p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex items-center bg-[#D29573] p-4"
+      >
         <input
           type="text"
           placeholder="Message BeanBot here"
@@ -116,7 +133,7 @@ const ChatbotPage = () => {
             backgroundColor: "#DAA17E", // Change input field's background color
           }}
         />
-        <button 
+        <button
           type="submit"
           className="ml-2 bg-[#A05854] text-white px-4 py-2 rounded-lg"
         >
