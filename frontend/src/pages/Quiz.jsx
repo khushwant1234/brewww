@@ -1,6 +1,53 @@
 import Navbar from "../components/Navbar";
+import React, { useState, useContext, useEffect } from "react";
+import { UserContext } from "../context/userContext";
+import { PostApiCall } from "../utils/apiCall";
+import Markdown from "react-markdown";
 
 const Quiz = () => {
+  const {
+    user,
+    selectedCourse,
+    setSelectedLecture,
+    setSelectedLectureId,
+    selectedLectureId,
+    setLecturesChat,
+    lecturesChat,
+    referenceLink,
+    setReferenceLink
+  } = useContext(UserContext);
+
+  const [reference, setReference] = useState({
+      jsonString: ""
+    });
+  const fetchSummarry = async () => {
+    try {
+          const response = await PostApiCall(
+            "http://localhost:8000/api/geminiCall",
+            {
+              pdfLink: referenceLink,
+              prompt: "Give some one word quiz questions nad answers based on the content of the pdf",
+            }
+          )
+            console.log("fetchSummary response", response);
+            setReference(response);
+        } catch (err) {
+          console.log("fetchSummarr error", err);
+        } 
+      };
+    useEffect(() => {
+      console.log("referenceLink", referenceLink);
+      fetchSummarry();
+    }, []);
+    if(!reference){
+      return (
+        <div className="min-h-screen bg-[#D29573]">
+        {/* Navbar */}
+        <Navbar />
+        </div>
+      )
+    }
+    else{
   return (
     <div className="min-h-screen bg-[#D29573]">
       {/* Navbar */}
@@ -16,24 +63,18 @@ const Quiz = () => {
               alt="Summary Icon"
               className="w-8 h-8 mr-1 align-middle" // Adjust the size and alignment of the image
             />
-            <span className="text-2xl text-[#5b3d2a] font-bold">Summary</span>
+            <span className="text-2xl text-[#5b3d2a] font-bold">Quiz</span>
           </div>
           <div className="bg-[#e6c3a1] p-6 rounded-lg text-[#5b3d2a] leading-relaxed text-sm">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-              feugiat vehicula sapien, eget tempor arcu mollis suscipit.
-              Suspendisse iaculis nisl eget sem lacinia, sit amet ultricies
-              magna accumsan. Ut ac pellentesque orci, faucibus condimentum
-              sapien. Vestibulum tincidunt ultricies enim, sit amet mattis erat
-              viverra eget. Quisque faucibus aliquam augue, eu tincidunt libero
-              auctor ultricies. Nulla facilisi. Vestibulum porttitor dapibus
-              risus a scelerisque.
-            </p>
+            <Markdown>
+              {reference.jsonString}
+            </Markdown>
           </div>
         </div>
       </div>
     </div>
   );
+}
 };
 
 export default Quiz;
