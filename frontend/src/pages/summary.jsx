@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import { PostApiCall } from "../utils/apiCall";
+import Markdown from "react-markdown";
 
 const Summary = () => {
   const {
@@ -65,9 +66,9 @@ const Summary = () => {
             <span className="text-2xl text-[#5b3d2a] font-bold">Summary</span>
           </div>
           <div className="bg-[#e6c3a1] p-6 rounded-lg text-[#5b3d2a] leading-relaxed text-sm">
-            <p>
+            <Markdown>
               {reference.jsonString}
-            </p>
+            </Markdown>
           </div>
         </div>
       </div>
