@@ -51,27 +51,18 @@ const Homepage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
+      <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-black font-sans">
         <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
           {/* Header Section */}
-          <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
-            <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
+          <div className="flex items-center justify-between p-4 bg-[#D29573] text-black border-b border-white/20">
+            <h1 className="text-lg font-semibold m-0">Your Courses</h1>
             <button
               onClick={handleLogout}
-              className="text-gray-300 hover:text-yellow-500 transition-colors duration-300"
+              className="text-black hover:text-white transition-colors duration-300"
             >
               Logout
             </button>
           </div>
-
-          {/* <div className="h-12 flex items-center bg-transparent rounded-lg">
-            <button
-              onClick={() => navigate("/lecture")}
-              className="w-full h-full bg-[#7D4448] rounded-lg shadow-md"
-            >
-              Lecture 1
-            </button>
-          </div> */}
 
           {/* Classroom List Section */}
           <div className="flex-1 p-5 overflow-y-auto space-y-5">
@@ -111,13 +102,13 @@ const Homepage = () => {
     <div className="h-full bg-[#D29573]">
       {/* Instructions Component Start */}
       {courses.length === 0 && (
-        <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
+        <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-black font-sans">
           <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
+            <div className="flex items-center justify-between p-4 bg-[#D29573] text-black border-b border-white/20">
               <h1 className="text-lg font-semibold m-0">Your Courses:</h1>
               <button
                 onClick={handleLogout}
-                className="text-black hover:white transition-colors duration-300"
+                className="text-black hover:text-white transition-colors duration-300"
               >
                 Logout
               </button>
@@ -158,14 +149,14 @@ const Homepage = () => {
 
       {/* Classrooms Component Start */}
       {courses.length > 0 && (
-        <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
+        <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-black font-sans">
           <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
             {/* Header Section */}
-            <div className="flex items-center justify-between p-4 bg-[#D29573] text-white border-b border-white/20">
+            <div className="flex items-center justify-between p-4 bg-[#D29573] text-black border-b border-white/20">
               <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
               <button
                 onClick={handleLogout}
-                className="text-gray-300 hover:text-yellow-500 transition-colors duration-300"
+                className="text-black hover:text-white transition-colors duration-300"
               >
                 Logout
               </button>
@@ -176,7 +167,7 @@ const Homepage = () => {
               {courses.map((course, index) => (
                 <div
                   key={index}
-                  className="h-12 flex items-center px-4 bg-[#DAA17E] rounded-lg text-white shadow-md transition-transform duration-300 transform hover:scale-105 hover:bg-[#ca9777] hover:text-black"
+                  className="h-12 flex items-center px-4 bg-[#DAA17E] rounded-lg text-black shadow-md transition-transform duration-300 transform hover:scale-105 hover:bg-[#ca9777] hover:text-white"
                   onClick={() => {
                     setSelectedCourse(course);
                     navigate("/lecture");

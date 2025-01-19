@@ -3,6 +3,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import axios from "axios";
 import Markdown from "react-markdown";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ChatbotPage = () => {
   const [messages, setMessages] = useState([]);
@@ -16,6 +18,8 @@ const ChatbotPage = () => {
     setLecturesChat,
     lecturesChat,
   } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Add welcome message when component mounts
@@ -51,7 +55,7 @@ const ChatbotPage = () => {
       const response = await axios.post("http://localhost:8000/api/ask", {
         links: lecturesChat,
         question: input,
-        context: conversationHistory
+        context: conversationHistory,
       });
 
       // Add bot response
@@ -77,15 +81,13 @@ const ChatbotPage = () => {
   return (
     <div className="h-screen flex flex-col bg-[#D29573]">
       {/* Header */}
-      <div className="p-4 bg-[#D29573] text-black relative">
-        <div className="flex items-center space-x-2">
-          <ArrowLeft
-            className="text-black hover:text-white cursor-pointer transition-colors"
-            size={20}
-            onClick={() => navigate("/lecture")}
-          />
-          <h2 className="text-md font-semibold m-0">Notes</h2>
-        </div>
+      <div className="p-4 flex items-center justify-between bg-[#D29573] text-black relative">
+        <ArrowLeft
+          className="text-black hover:text-white cursor-pointer transition-colors"
+          size={20}
+          onClick={() => navigate("/lecture")}
+        />
+
         <h1 className="text-xl font-bold text-brown-700 flex items-center">
           <span className="mr-2">☕</span> BeanBot
         </h1>

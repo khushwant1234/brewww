@@ -8,13 +8,11 @@ import { getItem } from "./utils/storage.js";
 import { Navigate } from "react-router-dom";
 import Auth from "./pages/Auth.jsx";
 import Notes from "./pages/Notes.jsx";
+import Quiz from "./pages/Quiz.jsx";
+import Summary from "./pages/summary.jsx";
+import Links from "./pages/links.jsx";
 import { useState, useEffect, useContext } from "react";
 import { UserProvider, UserContext } from "./context/userContext";
-
-// eslint-disable-next-line react/prop-types
-import ReferenceLinks from "./pages/links.jsx";
-import Signup from "./pages/signup.jsx";
-import Smth from "./pages/smth.jsx";
 import ChatbotPage from "./pages/chatbot.jsx";
 
 // import Login from "./pages/login.jsx"
@@ -117,6 +115,15 @@ const App = () => {
             <Route
               path="/notes"
               element={<PrivateRoute element={<Notes />} />}
+            />
+            <Route
+              path="/summary"
+              element={<PrivateRoute element={<Summary />} />}
+            />
+            <Route path="/quiz" element={<PrivateRoute element={<Quiz />} />} />
+            <Route
+              path="/links"
+              element={<PrivateRoute element={<Links />} />}
             />
           </Routes>
         </MemoryRouter>

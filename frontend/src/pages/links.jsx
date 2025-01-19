@@ -2,7 +2,7 @@
 import React from "react";
 import Navbar from "../components/Navbar"; // Import the Navbar component
 
-const ReferenceLinks = () => {
+const Links = () => {
   const links = [
     {
       id: 1,
@@ -11,7 +11,8 @@ const ReferenceLinks = () => {
     },
     {
       id: 2,
-      title: "Best strategies for solving advanced problems in exams and beyond",
+      title:
+        "Best strategies for solving advanced problems in exams and beyond",
       icon: "https://upload.wikimedia.org/wikipedia/commons/3/39/Up-arrow-icon.png", // Up-arrow icon
     },
   ];
@@ -31,7 +32,9 @@ const ReferenceLinks = () => {
             alt="Summary Icon"
             className="w-7 h-7 mr-2 align-middle" // Adjust the size and alignment of the image
           />
-          <span className="text-2xl text-[#5b3d2a] font-bold">Reference Links</span>
+          <span className="text-2xl text-[#5b3d2a] font-bold">
+            Reference Links
+          </span>
         </div>
         {/* Links */}
         <ul className="space-y-4">
@@ -58,4 +61,4 @@ const ReferenceLinks = () => {
   );
 };
 
-export default ReferenceLinks;
+export default Links;

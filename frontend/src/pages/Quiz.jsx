@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-const Summary = () => {
+const Quiz = () => {
   return (
     <div className="min-h-screen bg-[#D29573]">
       {/* Navbar */}
@@ -36,4 +36,4 @@ const Summary = () => {
   );
 };
 
-export default Summary;
+export default Quiz;

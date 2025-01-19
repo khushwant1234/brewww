@@ -197,7 +197,7 @@ const Classroom = () => {
     const filterOptions =
       activeTab === "lectures"
         ? allTags
-        : activeTab === "assignments"
+        : activeTab === "tutorials"
         ? ["Due", "Missing", "Submitted"]
         : ["Recent", "Important", "All"];
 
@@ -245,6 +245,9 @@ const Classroom = () => {
             Download
           </p>
         </a>
+        <p onClick={() => navigate("/summary")}>Summary</p>
+        <p onClick={() => navigate("/quiz")}>Quiz Generator</p>
+        <p onClick={() => navigate("/links")}>Reference</p>
       </div>
     );
   };
@@ -292,9 +295,16 @@ const Classroom = () => {
 
                   {/* Lecture Card Actions */}
                   <div className="p-4 pr-0 flex justify-end space-x-4">
-                    <button>
-                      <i href="/icons/notes.svg"></i>
-                    </button>
+                    <img
+                      src="/icons/notes.svg"
+                      alt="Notes"
+                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-9 h-9"
+                      onClick={() => {
+                        setSelectedLecture(lecture);
+                        navigate("/notes");
+                      }}
+                    />
+
                     <NotebookPen
                       size={20}
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer"
@@ -329,15 +339,14 @@ const Classroom = () => {
                   </div>
                 </div>
               ))}
-              <button
-                onClick={() => {
-                  console.log(lecturesChat);
-                  navigate("/chatbot");
-                }
-              }
-              >
-                Chatbot
-              </button>
+            <button
+              onClick={() => {
+                console.log(lecturesChat);
+                navigate("/chatbot");
+              }}
+            >
+              Chatbot
+            </button>
           </div>
         </div>
       );
@@ -371,7 +380,7 @@ const Classroom = () => {
           <div className="pt-0 p-6 overflow-auto flex-1">
             {/* Feature List with Active Lectures Tab */}
 
-            <div className="flex items-center p-4 bg-[#DAA17E] rounded-lg shadow-inner">
+            <div className="flex items-center p-4 mt-2 bg-[#DAA17E] rounded-lg shadow-inner">
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
                   activeTab === "lectures"
@@ -385,21 +394,21 @@ const Classroom = () => {
               </div>
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer mx-2.5 ${
-                  activeTab === "assignments"
+                  activeTab === "tutorials"
                     ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
-                onClick={() => handleTabClick("assignments")}
+                onClick={() => handleTabClick("tutorials")}
               >
                 <p className="m-0 mx-1 text-base font-semibold">Tutorials</p>
               </div>
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
-                  activeTab === "misc"
+                  activeTab === "labs"
                     ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
-                onClick={() => handleTabClick("misc")}
+                onClick={() => handleTabClick("labs")}
               >
                 <p className="m-0 mx-1 text-xl">|</p>
                 <p className="m-0 mx-1 text-base font-semibold">Lab</p>
@@ -478,21 +487,21 @@ const Classroom = () => {
               </div>
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer mx-2.5 ${
-                  activeTab === "assignments"
+                  activeTab === "tutorials"
                     ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
-                onClick={() => handleTabClick("assignments")}
+                onClick={() => handleTabClick("tutorials")}
               >
                 <p className="m-0 mx-1 text-base font-semibold">Tutorials</p>
               </div>
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
-                  activeTab === "misc"
+                  activeTab === "labs"
                     ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
-                onClick={() => handleTabClick("misc")}
+                onClick={() => handleTabClick("labs")}
               >
                 <p className="m-0 mx-1 text-xl">|</p>
                 <p className="m-0 mx-1 text-base font-semibold">Lab</p>
