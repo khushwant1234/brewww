@@ -245,9 +245,24 @@ const Classroom = () => {
             Download
           </p>
         </a>
-        <p onClick={() => navigate("/summary")}>Summary</p>
-        <p onClick={() => navigate("/quiz")}>Quiz Generator</p>
-        <p onClick={() => navigate("/links")}>Reference</p>
+        <p
+          className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
+          onClick={() => navigate("/summary")}
+        >
+          Summary
+        </p>
+        <p
+          className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
+          onClick={() => navigate("/quiz")}
+        >
+          Quiz Generator
+        </p>
+        <p
+          className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
+          onClick={() => navigate("/links")}
+        >
+          Reference
+        </p>
       </div>
     );
   };
@@ -298,7 +313,7 @@ const Classroom = () => {
                     <img
                       src="/icons/notes.svg"
                       alt="Notes"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-9 h-9"
+                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
                         setSelectedLecture(lecture);
                         navigate("/notes");
