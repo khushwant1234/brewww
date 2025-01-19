@@ -26,13 +26,13 @@ const LabInstructions = () => {
         "http://localhost:8000/api/geminiCall",
         {
           pdfLink: referenceLink,
-          prompt: "Sumarize the content of the pdf",
+          prompt: "Give me Aim, Material Required, observation, conclusion of the experiment",
         }
       );
-      console.log("fetchSummarry response", response);
+      console.log("fetchSummary response", response);
       setReference(response);
     } catch (err) {
-      console.log("fetchSummarry error", err);
+      console.log("fetchSummary error", err);
     }
   };
   useEffect(() => {

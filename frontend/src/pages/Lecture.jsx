@@ -251,7 +251,7 @@ const Classroom = () => {
       setActiveTab(null);
       clearContent();
     } else {
-      setLoading(true);
+      // setLoading(true);
       setActiveTab(tab);
     }
   };
