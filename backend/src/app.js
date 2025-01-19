@@ -6,6 +6,7 @@ import LectureRoute from "./routes/lectureRoutes.js";
 import NoteRouter from "./routes/noteRoutes.js";
 import tagRotuer from "./routes/tagRoutes.js";
 import chatRouter from "./routes/chatRoutes.js";
+import geminiRouter from "./routes/gemeniRoutes.js";
 import { AsyncHandler } from "./utils/AsyncHandler.js";
 
 import getReference from "./routes/referenceRoutes.js";
@@ -42,5 +43,6 @@ app.use("/api/note", NoteRouter);
 app.use("/api/tag", tagRotuer);
 app.use("/api/getReference", getReference);
 app.use("/api/ask", chatRouter);
+app.use("/api/geminiCall", geminiRouter);
 
 export default app;
