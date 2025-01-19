@@ -27,6 +27,7 @@ const Classroom = () => {
   const [selectedFilter, setSelectedFilter] = useState(null); // for filter
   const [filterId, setFilterId] = useState("676dda2f2e9bba9d072d3b5d");
   const [initialTagss, setInitialTagss] = useState(["a"]);
+
   // const [filterId, setFIlterId] = useState(
   //   tagsGroupedByLecture.find(group => group.tags.includes(tagName))?.lectureId
   // );
@@ -37,6 +38,8 @@ const Classroom = () => {
     setSelectedLecture,
     setSelectedLectureId,
     selectedLectureId,
+    setLecturesChat,
+    lecturesChat,
   } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -301,7 +304,8 @@ const Classroom = () => {
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer"
                       onClick={() => {
                         setSelectedLecture(lecture);
-                        navigate("/chatbot");
+                        setLecturesChat([...lecturesChat, lecture.link]);
+                        // navigate("/chatbot");
                       }}
                     />
                     <div className="relative">
@@ -321,6 +325,15 @@ const Classroom = () => {
                   </div>
                 </div>
               ))}
+              <button
+                onClick={() => {
+                  console.log(lecturesChat);
+                  navigate("/chatbot");
+                }
+              }
+              >
+                Chatbot
+              </button>
           </div>
         </div>
       );
