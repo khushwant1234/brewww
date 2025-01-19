@@ -12,6 +12,7 @@ import { PostApiCall } from "../utils/apiCall";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Modal from "../components/Modal";
 import { toast } from "react-toastify";
+import { removeItem } from "../utils/storage.js";
 
 const Classroom = () => {
   const [activeTab, setActiveTab] = useState("lectures");
@@ -250,11 +251,11 @@ const Classroom = () => {
 
     if (activeTab === "lectures") {
       return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto ">
           {/* Filter Section */}
           <div className="flex justify-end mb-4">
             <div
-              className="flex items-center space-x-2 bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-lg cursor-pointer"
+              className="flex items-center space-x-2 bg-transparent hover:bg-[#A05854] pl-4 pr-3 py-2 rounded-lg cursor-pointer"
               onClick={() => setShowFilter(!showFilter)}
             >
               <span>Filter</span>
@@ -277,15 +278,18 @@ const Classroom = () => {
               .map((lecture, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-lg shtext-base overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                  className="h-12 flex items-center justify-between pr-2 bg-[#DAA17E] rounded-lg text-white shadow-md "
                 >
                   {/* Lecture Card Header */}
-                  <div className="bg-teal-600 text-white p-4">
+                  <div className=" text-black p-4 ">
                     <h3 className="font-medium truncate">{lecture.name}</h3>
                   </div>
 
                   {/* Lecture Card Actions */}
-                  <div className="p-4 flex justify-end space-x-4">
+                  <div className="p-4 pr-0 flex justify-end space-x-4">
+                    <button>
+                      <i href="/icons/notes.svg"></i>
+                    </button>
                     <NotebookPen
                       size={20}
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer"
@@ -331,40 +335,65 @@ const Classroom = () => {
       <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
         <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="flex items-center gap-4 p-4 bg-[#DAA17E] text-white border-b border-white/20">
-            <ArrowLeft
-              className="text-gray-300 hover:text-white cursor-pointer transition-colors"
-              size={20}
-              onClick={() => navigate("/home")}
-            />
-            <h1 className="text-md font-semibold m-0">Your Classrooms</h1>
+          <div className="flex items-center justify-between gap-2.5 px-4 py-2 bg-[#DAA17E] border-b border-white/20">
+            <div className="flex items-center gap-2.5">
+              <ArrowLeft
+                className="text-black hover:text-white cursor-pointer transition-colors"
+                size={20}
+                onClick={() => navigate("/home")}
+              />
+              <h1 className="text-md text-black font-medium text-antique-white m-0">
+                {selectedCourse.name}
+              </h1>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="text-black hover:text-white transition-colors duration-300"
+            >
+              Logout
+            </button>
           </div>
-
-          {/* Course Name */}
-          <div className="w-[95%] mx-auto flex justify-center items-center py-4">
-            <h3 className="text-xl m-0">{selectedCourse.name}</h3>
-          </div>
-
           <div className="pt-0 p-6 overflow-auto flex-1">
             {/* Feature List with Active Lectures Tab */}
 
             <div className="flex items-center p-4 bg-[#DAA17E] rounded-lg shadow-inner">
-              <div className="w-1/3 flex flex-row items-center justify-around cursor-pointer text-[#ffd700]">
-                <p className="m-0 mx-1">Lectures</p>
-                <p className="m-0 mx-1">|</p>
+              <div
+                className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
+                  activeTab === "lectures"
+                    ? "text-[#7D4448] text-extrabold"
+                    : "text-[#A05854] hover:text-[#9F5654]"
+                }`}
+                onClick={() => handleTabClick("lectures")}
+              >
+                <p className="m-0 mx-1 text-base font-semibold">Lectures</p>
+                <p className="m-0 mx-1 text-xl">|</p>
               </div>
-              <div className="w-1/3 flex flex-row items-center justify-around cursor-pointer mx-2.5 text-white hover:text-[#ffd700]">
-                <p className="m-0 mx-1">Assignments</p>
+              <div
+                className={`w-1/3 flex flex-row items-center justify-around cursor-pointer mx-2.5 ${
+                  activeTab === "assignments"
+                    ? "text-[#7D4448] text-extrabold"
+                    : "text-[#A05854] hover:text-[#9F5654]"
+                }`}
+                onClick={() => handleTabClick("assignments")}
+              >
+                <p className="m-0 mx-1 text-base font-semibold">Tutorials</p>
               </div>
-              <div className="w-1/3 flex flex-row items-center justify-around cursor-pointer text-white hover:text-[#ffd700]">
-                <p className="m-0 mx-1">|</p>
-                <p className="m-0 mx-1">Misc</p>
+              <div
+                className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
+                  activeTab === "misc"
+                    ? "text-[#7D4448] text-extrabold"
+                    : "text-[#A05854] hover:text-[#9F5654]"
+                }`}
+                onClick={() => handleTabClick("misc")}
+              >
+                <p className="m-0 mx-1 text-xl">|</p>
+                <p className="m-0 mx-1 text-base font-semibold">Lab</p>
               </div>
             </div>
 
             {/* Filter Button */}
             <div className="relative flex justify-end flex-col items-end mb-4">
-              <div className="flex p-1 justify-around h-5 items-center mt-2 bg-[#ffd700] w-[18%] rounded-lg cursor-pointer">
+              <div className="flex items-center space-x-2 bg-transparent hover:bg-[#A05854] pl-4 pr-3 py-2 rounded-lg cursor-pointer">
                 <p>Filter</p>
                 <ChevronDown size={16} />
               </div>
@@ -375,9 +404,9 @@ const Classroom = () => {
               {[...Array(6)].map((_, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center bg-[#92b3b3] h-[40px] rounded-lg"
+                  className="flex justify-between items-center bg-[#9D6D5B] h-[40px] rounded-lg"
                 >
-                  <SkeletonTheme baseColor="#92b3b3" highlightColor="#a8c5c5">
+                  <SkeletonTheme baseColor="#9D6D5B" highlightColor="#7D4448">
                     <div className="flex w-full h-full justify-between items-center">
                       <div className="h-[100%] w-[100%]">
                         <Skeleton height={35} className="rounded-lg" />
@@ -401,17 +430,17 @@ const Classroom = () => {
           <div className="flex items-center justify-between gap-2.5 px-4 py-2 bg-[#DAA17E] border-b border-white/20">
             <div className="flex items-center gap-2.5">
               <ArrowLeft
-                className="text-gray-300 hover:text-white cursor-pointer transition-colors"
+                className="text-black hover:text-white cursor-pointer transition-colors"
                 size={20}
                 onClick={() => navigate("/home")}
               />
-              <h1 className="text-md font-medium text-antique-white m-0">
+              <h1 className="text-md text-black font-medium text-antique-white m-0">
                 {selectedCourse.name}
               </h1>
             </div>
             <button
               onClick={handleLogout}
-              className="text-black hover:white transition-colors duration-300"
+              className="text-black hover:text-white transition-colors duration-300"
             >
               Logout
             </button>
@@ -424,34 +453,34 @@ const Classroom = () => {
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
                   activeTab === "lectures"
-                    ? "text-[#7D4448] text-bold"
+                    ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
                 onClick={() => handleTabClick("lectures")}
               >
-                <p className="m-0 mx-1 text-base">Lectures</p>
-                <p className="m-0 mx-1 text-base">|</p>
+                <p className="m-0 mx-1 text-base font-semibold">Lectures</p>
+                <p className="m-0 mx-1 text-xl">|</p>
               </div>
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer mx-2.5 ${
                   activeTab === "assignments"
-                    ? "text-[#7D4448] text-bold"
+                    ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
                 onClick={() => handleTabClick("assignments")}
               >
-                <p className="m-0 mx-1 text-base">Tutorials</p>
+                <p className="m-0 mx-1 text-base font-semibold">Tutorials</p>
               </div>
               <div
                 className={`w-1/3 flex flex-row items-center justify-around cursor-pointer ${
                   activeTab === "misc"
-                    ? "text-[#7D4448] text-bold"
+                    ? "text-[#7D4448] text-extrabold"
                     : "text-[#A05854] hover:text-[#9F5654]"
                 }`}
                 onClick={() => handleTabClick("misc")}
               >
-                <p className="m-0 mx-1 text-base">|</p>
-                <p className="m-0 mx-1 text-base">Lab</p>
+                <p className="m-0 mx-1 text-xl">|</p>
+                <p className="m-0 mx-1 text-base font-semibold">Lab</p>
               </div>
             </div>
 

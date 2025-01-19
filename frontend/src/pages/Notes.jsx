@@ -7,6 +7,7 @@ import { UserContext } from "../context/userContext";
 import { ArrowLeft } from "lucide-react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { toast } from "react-toastify";
+import { removeItem } from "../utils/storage";
 
 const Notes = () => {
   const [notes, setNotes] = useState("");
@@ -96,10 +97,20 @@ const Notes = () => {
 
   useEffect(() => {
     if (!selectedLecture) {
-      navigate("/home");
+      navigate("/lecture");
     }
     fetchNotes();
   }, []);
+
+  const handleLogout = async () => {
+    // Clear user data from context
+    // setUser(null);
+    // Clear any stored tokens or session data
+
+    removeItem("token"); // Adjust based on your authentication setup
+    // Navigate to login page
+    navigate("/");
+  };
 
   // const handleResponseChange = (e) => {
 
@@ -107,60 +118,60 @@ const Notes = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white font-sans">
-        <div className="w-[400px] h-[600px] bg-gradient-to-b from-[#1e1e2f] via-[#302b63] to-[#24243e] shadow-lg flex flex-col overflow-hidden">
+      <div className="flex justify-center items-center min-h-screen bg-[#D29573] text-white font-sans">
+        <div className="w-full h-screen bg-[#D29573] shadow-lg flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="flex items-center gap-4 p-4 bg-[#302b63] text-white border-b border-white/20">
-            <ArrowLeft
-              className="text-gray-300 hover:text-white cursor-pointer transition-colors"
-              size={20}
-              onClick={() => navigate("/home")}
-            />
-            <h1 className="text-lg font-semibold m-0">Your Classrooms</h1>
+          <div className="flex items-center justify-between gap-2.5 px-4 py-2 bg-[#DAA17E] border-b border-white/20">
+            <div className="flex items-center gap-2.5">
+              <ArrowLeft
+                className="text-black hover:text-white cursor-pointer transition-colors"
+                size={20}
+                onClick={() => navigate("/lecture")}
+              />
+              <h1 className="text-md text-black font-medium text-antique-white m-0">
+                Notes
+              </h1>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="text-black hover:text-white transition-colors duration-300"
+            >
+              Logout
+            </button>
           </div>
+          {/* Header End */}
 
-          {/* Course Name */}
-          <div className="w-[95%] mx-auto flex justify-center items-center py-4">
-            <h3 className="text-xl m-0">Your Notes</h3>
-          </div>
-
-          <div className="pt-0 p-6 overflow-auto flex-1">
-            {/* Lecture List Skeleton */}
-            <div className="space-y-4">
-              {[...Array(6)].map((_, index) => (
-                <div
-                  key={index}
-                  className="flex justify-between items-center bg-[#92b3b3] h-[40px] rounded-lg"
-                >
-                  <SkeletonTheme baseColor="#92b3b3" highlightColor="#a8c5c5">
-                    <div className="flex w-full h-full justify-between items-center">
-                      <div className="h-[100%] w-[100%]">
-                        <Skeleton height={35} className="rounded-lg" />
-                      </div>
-                    </div>
-                  </SkeletonTheme>
+          {/* Lecture List Skeleton */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-center bg-[#9D6D5B] h-[40px] rounded-lg">
+              <SkeletonTheme baseColor="#9D6D5B" highlightColor="#7D4448">
+                <div className="flex w-full h-full justify-between items-center">
+                  <div className="h-[100%] w-[100%]">
+                    <Skeleton height="100vh" className="rounded-lg" />
+                  </div>
                 </div>
-              ))}
+              </SkeletonTheme>
             </div>
           </div>
         </div>
       </div>
     );
   }
-
   return (
     <div>
       {/* Header Start */}
-      <div className="p-4 bg-[#302b63] text-white relative">
+      <div className="p-4 bg-[#D29573] text-black relative">
         <div className="flex items-center space-x-2">
-          <button onClick={() => navigate("/lecture")}>
-            <i className="ri-arrow-left-line text-xl text-gray-400 cursor-pointer hover:text-yellow-400 transition ease-in-out"></i>
-          </button>
+          <ArrowLeft
+            className="text-black hover:text-white cursor-pointer transition-colors"
+            size={20}
+            onClick={() => navigate("/lecture")}
+          />
           <h2 className="text-md font-semibold m-0">Notes</h2>
         </div>
         <button
           onClick={handleUpdateNotes}
-          className="absolute top-2 right-4 bg-yellow-400 text-[#000000] rounded-md hover:bg-yellow-500 transition my-2 px-4 py-0"
+          className="absolute top-2 right-4 bg-[#A05854] text-black hover:text-white rounded-md hover:bg-[#9F5654] transition my-2 px-4 py-0"
           style={{
             fontSize: "12px",
             width: "60px",

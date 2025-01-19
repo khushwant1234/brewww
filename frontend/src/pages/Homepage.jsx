@@ -6,7 +6,6 @@ import { UserContext } from "../context/userContext.jsx";
 import { useNavigate } from "react-router-dom";
 import "react-loading-skeleton/dist/skeleton.css";
 import { removeItem } from "../utils/storage.js";
-import { UserProvider } from "../context/userContext";
 
 const Homepage = () => {
   const [data, setData] = useState(null);
@@ -68,7 +67,7 @@ const Homepage = () => {
           {/* <div className="h-12 flex items-center bg-transparent rounded-lg">
             <button
               onClick={() => navigate("/lecture")}
-              className="w-full h-full bg-[#302b63] rounded-lg shadow-md"
+              className="w-full h-full bg-[#7D4448] rounded-lg shadow-md"
             >
               Lecture 1
             </button>
@@ -82,9 +81,9 @@ const Homepage = () => {
                 className="h-12 flex items-center bg-transparent rounded-lg"
               >
                 <SkeletonTheme
-                  baseColor="#1e1e2f"
-                  highlightColor="#302b63"
-                  width="355px"
+                  baseColor="#9D6D5B"
+                  highlightColor="#7D4448"
+                  width="320px"
                   height="48px"
                 >
                   <Skeleton
