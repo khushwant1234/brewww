@@ -19,6 +19,7 @@ const Classroom = () => {
   const [showFilter, setShowFilter] = useState(false);
   const [showOptionsMenu, setShowOptionsMenu] = useState(null);
   const [lectures, setLectures] = useState([]);
+  const [tutorials, setTutorials] = useState([]);
   const [allTags, setAllTags] = useState([]);
   const [tagsGroupedByLecture, setTagsGroupedByLecture] = useState([]);
   const [update, setUpdate] = useState([]);
@@ -67,11 +68,47 @@ const Classroom = () => {
     }
   };
 
+  const fetchTutorials = async () => {
+    try {
+      const response = await PostApiCall(
+        "http://localhost:8000/api/tutorial/getTutorials",
+        {
+          courseId: selectedCourse._id,
+          batch: user.batch,
+          branch: user.branch,
+        }
+      );
+      setTutorials(response.data);
+      console.log("getTutorials response", response);
+    } catch (err) {
+      console.log("getTutorials error", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // const postTutorial = async (tutorial) => {
+  //   console.log("course NAME: ", selectedCourse.name);
+  //   try {
+  //     const response = await PostApiCall("http://localhost:8000/api/tutorial", {
+  //       course: selectedCourse.name,
+  //       batch: user.batch,
+  //       branch: user.branch,
+  //       name: "Assignment 1",
+  //       url: "https://learn-eu-central-1-prod-fleet01-xythos.content.blackboardcdn.com/5f1e65938f97d/4139186?X-Blackboard-S3-Bucket=learn-eu-central-1-prod-fleet01-xythos&X-Blackboard-Expiration=1737255600000&X-Blackboard-Signature=VhkaNVzXJNWv1HrfjEn6YE4%2FDWgNt9n%2BaYjGPrE%2F0Vo%3D&X-Blackboard-Client-Id=511318&X-Blackboard-S3-Region=eu-central-1&response-cache-control=private%2C%20max-age%3D21600&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%27Assignment-1.pdf&response-content-type=application%2Fpdf&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIb%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDGV1LWNlbnRyYWwtMSJGMEQCIFzstQSNdGJLuEkrz2%2BQAwXytcLuo6PAxhCEPK%2Fc9zGdAiAgeC9i%2BGwnOXNvegYkGtLpXRVVF47YNdYo3vTqXCAJCyq%2BBQh%2FEAQaDDYzNTU2NzkyNDE4MyIMdxsfcTQpI8DpbMnWKpsFymsdanSIXkkvol0NdFMi%2Bx53NXkIBHegD18q5P%2BtfligUr%2BkyttyZHWuNWrlrx4Tq9%2BuMzMYDctJfpmz70k5O93OLzF0V7d9N2gmUgImjAng4zczv3IvSBHeZVYqiFVIB%2FKLe3lBIUMSEB7a7QUiPk6uT9I5DTjdnodaMWYe2TI87b5E095JhbTl4p8LTUVrVnTngFds3kfRe9CMkL2WDLxEtrtQoFwfpOjfZ%2BPYufs5yytPcat3VdRm3bdJeXmmHE6S6NnyR60nCS%2F2VacTkWb5dhcENBodxT5u%2Fg5HyJclbk1ZZWwl000lprXVrAZN9nHY2LFmK%2FzNE8F5N0jyidEudUh%2BPyZ%2FHQgumV%2BkZPiBUjFl9NCxWi5YBdw7VALeZ373eJ8FEopQ%2FNjFuF0F3aBGJrKbV5lIuA8DlXni6w%2BxLNYTKg%2FFaw4JAGtTZzTd4pTlIJZzVw7uXLy0VYcePK13BOWdvU8bmylisWqNTxi5AUExoC%2FQM9lqRFMF3hDxKSc8FDDgzENsUyHTBwMZbHYNWvQ1761fmiBlLtZVmMZZWuX8sO5bFo0SxfavWioH3ovUUFh0Ojz1h6B0cuDlX0HD91hEsIl6%2FOIFqI3n%2FgaXsub%2FMdtkHuW7uiZM3oHDA0wMsRaWKbUb6Njvuq27C7acGoq0CcNYf%2BjqAh1XWPz2wJZvrt4Tg%2ByeedmfFMBcWUp0O84FFEwO2F3Oxubk8eP4AYzYdjqqr5WpQKvzUsXXQ2YNw%2FWxH7PnwfztGVosD6V6hGKL3i1%2FukGpxM0iRKo8grVj8ovZMSXdYZBLW2KRjuuPSj%2Fil6JOS0IZYWmKHvIVgvAgTaIPgKP0%2BD9TM5CHmakV7I3WbJ78BV%2Bd7DABcZAScNnbGSN6RTCJxLC8BjqyAXVgkzfIWDjKO2lygTHKsMLxucTCpAafuk%2FuI17Z9niZa3XTnH7uBaaMe59Nkada%2F6WX03OAMiEsH6hX6V8fN2%2FqwU2mU7N7PhvXXmDOPPIkj%2FyWTtnN%2F1vt7hIyF51Lui%2BH1iJJgbj7%2B4yHjk9PuBBg8eP9JIFGlijhTEUFtdkRRmZmKCRZWn2Z%2FlTwpyOmGdiZWRgMHFuL9ER6hgDlt1kFNJZS3zLT4OCOFSOBr7DFlaI%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250118T210000Z&X-Amz-SignedHeaders=host&X-Amz-Expires=21600&X-Amz-Credential=ASIAZH6WM4PL3ZOSIQXH%2F20250118%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Signature=344ddebe22c236188e0b3c1fe60c87b2fb9f3b7d70f1be7857102b2cd1b848a7",
+  //     });
+  //     console.log("postTutorial response", response);
+  //   } catch (err) {
+  //     console.log("postTutorial error", err);
+  //   }
+  // };
+
   useEffect(() => {
     if (!selectedCourse) {
       navigate("/home");
     }
     fetchLectures();
+    fetchTutorials();
     fetchAllTags();
   }, []);
 
@@ -159,7 +196,6 @@ const Classroom = () => {
     // Clear user data from context
     // setUser(null);
     // Clear any stored tokens or session data
-
     removeItem("token"); // Adjust based on your authentication setup
     // Navigate to login page
     navigate("/");
@@ -351,6 +387,58 @@ const Classroom = () => {
                       />
                       {renderOptionsMenu(index, lecture.link, lecture._id)}
                     </div>
+                  </div>
+                </div>
+              ))}
+            <button
+              onClick={() => {
+                console.log(lecturesChat);
+                navigate("/chatbot");
+              }}
+            >
+              Chatbot
+            </button>
+          </div>
+        </div>
+      );
+    }
+    if (activeTab === "tutorials") {
+      return (
+        <div className="container mx-auto ">
+          {/* Lectures Grid */}
+          <div className="grid grid-ctext-base md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {tutorials
+              .filter((tutorial) => {
+                if (!selectedFilter) return true;
+                const tutorialTags =
+                  tagsGroupedBytutorial.find(
+                    (group) => group.tutorialId === tutorial._id.toString()
+                  )?.tags || [];
+                return tutorialTags.includes(selectedFilter);
+              })
+              .slice()
+              .reverse()
+              .map((tutorial, index) => (
+                <div
+                  key={index}
+                  className="h-12 flex items-center justify-between pr-2 bg-[#DAA17E] rounded-lg text-white shadow-md "
+                >
+                  {/* tutorial Card Header */}
+                  <div className=" text-black p-4 ">
+                    <h3 className="font-medium truncate">{tutorial.name}</h3>
+                  </div>
+
+                  {/* tutorial Card Actions */}
+                  <div className="p-4 pr-0 flex justify-end space-x-4">
+                    <img
+                      src="/icons/notes.svg"
+                      alt="Notes"
+                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      onClick={() => {
+                        setSelectedTutorial(tutorial);
+                        navigate("/notes");
+                      }}
+                    />
                   </div>
                 </div>
               ))}
