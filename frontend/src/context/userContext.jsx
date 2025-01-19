@@ -9,6 +9,7 @@ const UserProvider = ({ children }) => {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedLecture, setSelectedLecture] = useState(null);
   const [selectedLectureId, setSelectedLectureId] = useState(null);
+  const [lecturesChat, setLecturesChat] = useState([]);
 
   return (
     <UserContext.Provider
@@ -21,6 +22,8 @@ const UserProvider = ({ children }) => {
         setSelectedLecture,
         selectedLectureId,
         setSelectedLectureId,
+        lecturesChat,
+        setLecturesChat
       }}
     >
       {children}

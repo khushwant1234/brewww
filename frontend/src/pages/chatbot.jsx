@@ -1,23 +1,59 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { UserContext } from "../context/userContext";
+import axios from 'axios';
+import Markdown from 'react-markdown'
 
 const ChatbotPage = () => {
-  const [messages, setMessages] = useState([
-    { sender: "user", text: "Lorem Ipsum Dorem, Design brain not working", img: "/icons/circle.svg" },
-    { sender: "user", text: "HIIII, I AM SOMEONE pls help me with hw", img: "/icons/circle.svg" },
-    { sender: "bot", text: "Okay", img: "/icons/logo.svg" },
-  ]);
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const {
+    user,
+    selectedCourse,
+    setSelectedLecture,
+    setSelectedLectureId,
+    selectedLectureId,
+    setLecturesChat,
+    lecturesChat,
+  } = useContext(UserContext);  
 
-  const [input, setInput] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
 
-  const handleSendMessage = () => {
-    if (input.trim()) {
-      setMessages([
-        ...messages,
-        { sender: "user", text: input, img: "/icons/circle.svg" },
-      ]);
-      setInput(""); // Reset input field
+    // Add user message
+    const userMessage = {
+      sender: 'user',
+      text: input,
+      img: 'icons/coffeebean.svg' // Update with real avatar path
+    };
+    setMessages(prev => [...prev, userMessage]);
+    
+    try {
+      // Make API call
+      const response = await axios.post('http://localhost:8000/api/ask', {
+        links: lecturesChat,
+        question: input
+      });
+
+      // Add bot response
+      const botMessage = {
+        sender: 'bot',
+        text: response.data.answer,
+        img: 'icons/logo.svg' // Update with real avatar path
+      };
+      setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+      const errorMessage = {
+        sender: 'bot',
+        text: 'Sorry, I encountered an error. Please try again.',
+        img: 'icons/logo.svg'
+      };
+      setMessages(prev => [...prev, errorMessage]);
     }
+
+    setInput('');
   };
 
   return (
@@ -42,7 +78,7 @@ const ChatbotPage = () => {
             <img
               src={message.img} // Dynamically assign image based on sender
               alt={`${message.sender} avatar`}
-              className="w-10 h-10 rounded-full shadow-md mx-2"
+              className="w-10 h-10 mx-2"
             />
             {/* Message Bubble */}
             <div
@@ -51,34 +87,33 @@ const ChatbotPage = () => {
               } rounded-lg p-3 text-black max-w-xs`}
               style={{ marginLeft: "8px", marginRight: "8px", padding: "10px 16px" }}
             >
-              {message.text}
+            <Markdown>{message.text}</Markdown>
             </div>
           </div>
         ))}
       </div>
 
       {/* Input Section */}
-      <div className="flex items-center bg-[#D29573] p-4">
+      <form onSubmit={handleSubmit} className="flex items-center bg-[#D29573] p-4">
         <input
           type="text"
           placeholder="Message BeanBot here"
-          className="flex-1 rounded-lg px-4 py-4 focus:outline-none 
+          className="flex-1 px-4 py-4 focus:outline-none 
                       placeholder:text-[#A05854] placeholder:text-sm bg-[#DAA17E]"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           style={{
             padding: "12px 20px", // Increase padding for larger field size
             backgroundColor: "#DAA17E", // Change input field's background color
           }}
         />
-        <button
-          className="ml-2 px-4 py-2 bg-[#A05854] text-white rounded-lg"
-          onClick={handleSendMessage}
+        <button 
+          type="submit"
+          className="ml-2 bg-[#A05854] text-white px-4 py-2 rounded-lg"
         >
-          ➤
+          Send
         </button>
-      </div>
+      </form>
     </div>
   );
 };

@@ -1,10 +1,9 @@
 import Router from "express";
-import { getChat, deleteChat } from "../controllers/chatControllers.js";
+import { chatBot } from "../controllers/chatBotControllers.js";
 import { validateToken } from "../middleware/validateToken.js";
 
 const router = Router();
 
-router.route("/").post(validateToken, getChat);
-router.route("/delete").post(validateToken, deleteChat);
+router.post("/", chatBot);
 
 export default router;
