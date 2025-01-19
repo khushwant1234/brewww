@@ -6,8 +6,12 @@ import LectureRoute from "./routes/lectureRoutes.js";
 import NoteRouter from "./routes/noteRoutes.js";
 import tagRotuer from "./routes/tagRoutes.js";
 import chatRouter from "./routes/chatRoutes.js";
+<<<<<<< HEAD
+import geminiRouter from "./routes/gemeniRoutes.js";
+=======
 import tutorialRouter from "./routes/tutorialRoutes.js";
 import labRouter from "./routes/labRoutes.js";
+>>>>>>> 569496033054f260234bd2012f40910a4fbd4ee2
 import { AsyncHandler } from "./utils/AsyncHandler.js";
 
 import getReference from "./routes/referenceRoutes.js";
@@ -44,7 +48,11 @@ app.use("/api/note", NoteRouter);
 app.use("/api/tag", tagRotuer);
 app.use("/api/getReference", getReference);
 app.use("/api/ask", chatRouter);
+<<<<<<< HEAD
+app.use("/api/geminiCall", geminiRouter);
+=======
 app.use("/api/tutorial", tutorialRouter);
 app.use("/api/lab", labRouter);
+>>>>>>> 569496033054f260234bd2012f40910a4fbd4ee2
 
 export default app;
