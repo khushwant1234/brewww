@@ -321,10 +321,10 @@ const Classroom = () => {
         </p>
         <p
           className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
-          onClick={() => {
+          onClick={() =>{
             setReferenceLink(url);
             navigate("/quiz");
-          }}
+          } }
         >
           Quiz Generator
         </p>
@@ -473,17 +473,17 @@ const Classroom = () => {
                       alt="Notes"
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setSelectedTutorial(tutorial);
-                        navigate("/notes");
+                        setReferenceLink(url);
+                        navigate("/quiz");
                       }}
                     />
                     <img
                       src="/icons/notes.svg"
-                      alt="Reference"
+                      alt="Notes"
                       className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setSelectedLab(lab);
-                        // navigate("/LabInstructions");
+                        setReferenceLink(url);
+                        navigate("/quiz");
                       }}
                     />
                   </div>
@@ -528,15 +528,6 @@ const Classroom = () => {
                       onClick={() => {
                         setSelectedLab(lab);
                         navigate("/LabInstructions");
-                      }}
-                    />
-                    <img
-                      src="/icons/notes.svg"
-                      alt="Reference"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
-                      onClick={() => {
-                        setSelectedLab(lab);
-                        // navigate("/LabInstructions");
                       }}
                     />
                   </div>
