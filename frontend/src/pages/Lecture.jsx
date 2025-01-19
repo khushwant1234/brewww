@@ -41,6 +41,8 @@ const Classroom = () => {
     selectedLectureId,
     setLecturesChat,
     lecturesChat,
+    referenceLink,
+    setReferenceLink,
   } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -259,7 +261,10 @@ const Classroom = () => {
         </p>
         <p
           className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
-          onClick={() => navigate("/links")}
+          onClick={() =>{
+            setReferenceLink(url);
+            navigate("/links");
+          } }
         >
           Reference
         </p>
