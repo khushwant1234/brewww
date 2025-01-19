@@ -12,6 +12,7 @@ import Quiz from "./pages/Quiz.jsx";
 import Summary from "./pages/summary.jsx";
 import Links from "./pages/links.jsx";
 import TutorialHelper from "./pages/tutorialHelper.jsx"
+import TutorialLinks from "./pages/TutorialLinks.jsx"
 import { useState, useEffect, useContext } from "react";
 import { UserProvider, UserContext } from "./context/userContext";
 import ChatbotPage from "./pages/chatbot.jsx";
@@ -129,6 +130,10 @@ const App = () => {
             <Route
               path="/tutorialHelper"
               element={<PrivateRoute element={<TutorialHelper />} />}
+            />
+            <Route
+              path="/TutorialLinks"
+              element={<PrivateRoute element={<TutorialLinks />} />}
             />
           </Routes>
         </MemoryRouter>
