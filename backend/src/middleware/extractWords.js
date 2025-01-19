@@ -2,15 +2,20 @@ import fetch from "node-fetch";
 import fs from 'fs';
 import search from '../controllers/searchControllers.js';  // Add import
 
-export const test = async (req, res) => {
+export const getReference = async (req, res) => {
+    const pdfLink = req.body.pdfLink;
+    const response = await fetch(pdfLink);
+    const pdfBuffer = await response.arrayBuffer();
+    fs.writeFileSync("/tmp/context.pdf", Buffer.from(pdfBuffer));
+
     try {
-        const pdfBuffer = fs.readFileSync("/Users/rohitjg/Desktop/Lecture02.pdf");
+        const pdfBuffer = fs.readFileSync("/tmp/context.pdf");
         const base64Pdf = pdfBuffer.toString('base64');
         
         const prompt = "Give me a json output that i can use json.parse to get the json which should have schema {title: [topic1, topic2, topic3, topic4, topic5] 5 main importatn topic from the pdf without any markdown";
 
         const apiResponse = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_KEY}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
             {
                 method: "POST",
                 headers: {
@@ -33,8 +38,9 @@ export const test = async (req, res) => {
                 }),
             }
         );
-        
+
         const result = await apiResponse.json();
+        console.log(result);
         var jsonString = result.candidates[0].content.parts[0].text;
         console.log(result.candidates[0].content.parts[0].text); 
         if (jsonString[0] !== '{' || jsonString[jsonString.length-1] !== '}') {
@@ -50,9 +56,9 @@ export const test = async (req, res) => {
         // Search for each topic
         for (let i = 0; i < toSearch.length; i++) {
             try {
-                const searchResult = await search(toSearch[i], true, true);
-                if (searchResult.youtube) youtubeLinks.push(searchResult.youtube);
-                if (searchResult.article) articleLinks.push(searchResult.article);
+                const searchResult = await search(toSearch[i], req.body.youtube, req.body.article);
+                if (searchResult.youtube) youtubeLinks.push({title: searchResult.youtubeTitle, link: searchResult.youtube}); //youtubeLinks.push(searchResult.youtube);
+                if (searchResult.article) articleLinks.push({title: searchResult.articleTitle, link: searchResult.article}); //articleLinks.push(searchResult.article);
             } catch (searchError) {
                 console.error(`Error searching for ${toSearch[i]}:`, searchError);
             }

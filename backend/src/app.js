@@ -8,7 +8,7 @@ import tagRotuer from "./routes/tagRoutes.js";
 import chatRouter from "./routes/chatRoutes.js";
 import { AsyncHandler } from "./utils/AsyncHandler.js";
 
-import test from "./routes/test.js";
+import getReference from "./routes/referenceRoutes.js";
 const app = express();
 
 app.use(cors());
@@ -40,7 +40,7 @@ app.use("/api/lecture", LectureRoute);
 
 app.use("/api/note", NoteRouter);
 app.use("/api/tag", tagRotuer);
-app.use("/api/test", test);
+app.use("/api/getReference", getReference);
 app.use("/api/ask", chatRouter);
 
 export default app;

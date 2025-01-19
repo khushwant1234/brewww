@@ -12,14 +12,18 @@ export default async function search(word, youtube, article) {
         const result = await response.json();
 
         let ytLink = '';
+        let ytTitle = '';
         let articleLink = '';
+        let articleTitle = '';
 
         for (const item of result.items) {
             if(youtube == true && article == true){
                 if (item.displayLink === "www.youtube.com" && !ytLink) {
                     ytLink = item.link;
+                    ytTitle = item.title;
                 } else if (item.displayLink !== "www.youtube.com" && !articleLink) {
                     articleLink = item.link;
+                    articleTitle = item.title;
                 }
                 
                 if (ytLink && articleLink) break; 
@@ -27,12 +31,14 @@ export default async function search(word, youtube, article) {
             else if(article == true && youtube == false){
                 if (item.displayLink !== "www.youtube.com" && !articleLink) {
                     articleLink = item.link;
+                    articleTitle = item.title;
                 }
                 if (articleLink) break;
             }
             else if(youtube == true && article == false){
                 if (item.displayLink === "www.youtube.com" && !ytLink) {
                     ytLink = item.link;
+                    ytTitle = item.title;
                 }
                 if (ytLink) break;
             }
@@ -40,7 +46,9 @@ export default async function search(word, youtube, article) {
 
         return {
             youtube: ytLink,
-            article: articleLink
+            youtubeTitle: ytTitle,
+            article: articleLink,
+            articleTitle: articleTitle
         };
     } catch (error) {
         console.error('Error making API request:', error.message);
