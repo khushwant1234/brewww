@@ -51,6 +51,7 @@ const ChatbotPage = () => {
       const response = await axios.post("http://localhost:8000/api/ask", {
         links: lecturesChat,
         question: input,
+        context: conversationHistory
       });
 
       // Add bot response
