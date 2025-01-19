@@ -8,6 +8,8 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [selectedLecture, setSelectedLecture] = useState(null);
+  const [SelectedTutorial, setSelectedTutorial] = useState(null);
+  const [selectedlab, setSelectedlab] = useState(null);
   const [selectedLectureId, setSelectedLectureId] = useState(null);
   const [lecturesChat, setLecturesChat] = useState([]);
   const [referenceLink, setReferenceLink] = useState([]);
@@ -21,6 +23,10 @@ const UserProvider = ({ children }) => {
         setSelectedCourse,
         selectedLecture,
         setSelectedLecture,
+        SelectedTutorial,
+        setSelectedTutorial,
+        selectedlab,
+        setSelectedlab,
         selectedLectureId,
         setSelectedLectureId,
         lecturesChat,
