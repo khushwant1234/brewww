@@ -321,7 +321,10 @@ const Classroom = () => {
         </p>
         <p
           className="px-4 py-2 text-black hover:bg-gray-400 cursor-pointer transition-colors"
-          onClick={() => navigate("/quiz")}
+          onClick={() =>{
+            setReferenceLink(url);
+            navigate("/quiz");
+          } }
         >
           Quiz Generator
         </p>
