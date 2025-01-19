@@ -17,6 +17,15 @@ const ChatbotPage = () => {
     lecturesChat,
   } = useContext(UserContext);  
 
+  useEffect(() => {
+    // Add welcome message when component mounts
+    setMessages([{
+      sender: 'bot',
+      text: "Hi! I am Bean Bot, Here to help you on your learning journey. Feel free to ask questions from the notes you have selected.",
+      img: 'icons/logo.svg'
+    }]);
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
