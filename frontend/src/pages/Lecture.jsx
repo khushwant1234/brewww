@@ -494,8 +494,8 @@ const Classroom = () => {
                       alt="Notes"
                       className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setReferenceLink(url);
-                        navigate("/quiz");
+                        setReferenceLink(tutorial.link);
+                        navigate("/tutorialHelper");
                       }}
                     />
                     <img
@@ -503,8 +503,8 @@ const Classroom = () => {
                       alt="Notes"
                       className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setReferenceLink(url);
-                        navigate("/quiz");
+                        setReferenceLink(tutorial.link);
+                        navigate("/TutorialLinks");
                       }}
                     />
                   </div>
@@ -547,7 +547,16 @@ const Classroom = () => {
                       alt="Notes"
                       className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
                       onClick={() => {
-                        setSelectedLab(lab);
+                        setReferenceLink(lab.link);
+                        navigate("/LabLinks");
+                      }}
+                    />
+                    <img
+                      src="/icons/notes.svg"
+                      alt="Notes"
+                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      onClick={() => {
+                        setReferenceLink(lab.link);
                         navigate("/LabInstructions");
                       }}
                     />

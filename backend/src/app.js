@@ -9,6 +9,7 @@ import chatRouter from "./routes/chatRoutes.js";
 import geminiRouter from "./routes/gemeniRoutes.js";
 import tutorialRouter from "./routes/tutorialRoutes.js";
 import labRouter from "./routes/labRoutes.js";
+import ytLabRouter from "./routes/ytLabRoutes.js";
 import { AsyncHandler } from "./utils/AsyncHandler.js";
 
 import getReference from "./routes/referenceRoutes.js";
@@ -48,5 +49,6 @@ app.use("/api/ask", chatRouter);
 app.use("/api/geminiCall", geminiRouter);
 app.use("/api/tutorial", tutorialRouter);
 app.use("/api/lab", labRouter);
+app.use("/api/ytLab", ytLabRouter);
 
 export default app;

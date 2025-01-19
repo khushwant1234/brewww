@@ -26,7 +26,7 @@ const LabInstructions = () => {
         "http://localhost:8000/api/geminiCall",
         {
           pdfLink: referenceLink,
-          prompt: "Give me Aim, Material Required, observation, conclusion of the experiment",
+          prompt: "Give me Aim, Material Required, observation, conclusion of the experiment ONLY, Only the specified sub headings",
         }
       );
       console.log("fetchSummary response", response);
@@ -62,10 +62,10 @@ const LabInstructions = () => {
                 alt="Summary Icon"
                 className="w-8 h-8 mr-1 align-middle" // Adjust the size and alignment of the image
               />
-              <span className="text-2xl text-[#5b3d2a] font-bold">Summary</span>
+              <span className="text-2xl text-[#5b3d2a] font-bold">Lab Instructions</span>
             </div>
             <div className="bg-[#e6c3a1] p-6 rounded-lg text-[#5b3d2a] leading-relaxed text-sm">
-              <Markdown>{reference.jsonString}</Markdown>
+              <Markdown>{reference.jsonString.replace('Observations:', 'Observations:(Not accurate, for reference only)').replace('Observation:', 'Observations:(Not accurate, for reference only)')}</Markdown>
             </div>
           </div>
         </div>
