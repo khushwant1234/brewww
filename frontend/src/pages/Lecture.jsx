@@ -484,24 +484,24 @@ const Classroom = () => {
                 >
                   {/* tutorial Card Header */}
                   <div className=" text-black p-4 ">
-                    <h3 className="font-medium truncate">{tutorial.name}</h3>
+                    <h3 className="text-lg truncate">{tutorial.name}</h3>
                   </div>
 
                   {/* tutorial Card Actions */}
                   <div className="p-4 pr-0 flex justify-end space-x-4">
                     <img
-                      src="/icons/notes.svg"
-                      alt="Notes"
-                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      src="/icons/bulb.svg"
+                      alt="tutorial Helper"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-7 h-7"
                       onClick={() => {
                         setReferenceLink(tutorial.link);
                         navigate("/tutorialHelper");
                       }}
                     />
                     <img
-                      src="/icons/notes.svg"
-                      alt="Notes"
-                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                      src="/icons/sidebar.svg"
+                      alt="Reference Links"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-7 h-7"
                       onClick={() => {
                         setReferenceLink(tutorial.link);
                         navigate("/TutorialLinks");
@@ -537,29 +537,31 @@ const Classroom = () => {
                 >
                   {/* lab Card Header */}
                   <div className=" text-black p-4 ">
-                    <h3 className="font-medium truncate">{lab.name}</h3>
+                    <h3 className="text-lg truncate">{lab.name}</h3>
                   </div>
 
                   {/* lab Card Actions */}
                   <div className="p-4 pr-0 flex justify-end space-x-4">
-                    <img
-                      src="/icons/notes.svg"
-                      alt="Notes"
-                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-10 h-10"
-                      onClick={() => {
-                        setReferenceLink(lab.link);
-                        navigate("/LabLinks");
-                      }}
-                    />
-                    <img
-                      src="/icons/notes.svg"
-                      alt="Notes"
-                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-10 h-10"
+                  <img
+                  src="/icons/bulb.svg"
+                      alt="Lab Instructions"
+                      className="text-gray-600 hover:text-teal-600 hover:scale-110 transition-all cursor-pointer w-8 h-8"
                       onClick={() => {
                         setReferenceLink(lab.link);
                         navigate("/LabInstructions");
                       }}
                     />
+                    <img
+                      src="/icons/sidebar.svg"
+                      alt="Reference Links"
+                      className="text-black hover:[#A05854] hover:scale-110 transition-all cursor-pointer w-8 h-8"
+                      onClick={() => {
+                        setReferenceLink(lab.link);
+                        navigate("/LabLinks");
+                      }}
+                    />
+                    
+                    
                   </div>
                 </div>
               ))}
